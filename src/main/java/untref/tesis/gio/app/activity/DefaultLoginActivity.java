@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import untref.tesis.gio.R;
-import untref.tesis.gio.core.domain.LoginFactory;
+import untref.tesis.gio.app.domain.LoginPresenterFactory;
 import untref.tesis.gio.app.presenter.LoginPresenter;
 
 public class DefaultLoginActivity extends Activity implements LoginActivity {
@@ -16,7 +16,7 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        loginPresenter = LoginFactory.createPresenter(this);
+        loginPresenter = LoginPresenterFactory.createPresenter(this);
         setContentView(R.layout.default_login_activity);
     }
 
