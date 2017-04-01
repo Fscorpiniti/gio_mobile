@@ -5,6 +5,7 @@ import untref.tesis.gio.core.interactor.DefaultLoginInteractor;
 import untref.tesis.gio.core.interactor.LoginInteractor;
 import untref.tesis.gio.app.presenter.DefaultLoginPresenter;
 import untref.tesis.gio.app.presenter.LoginPresenter;
+import untref.tesis.gio.infrastructure.repository.datasource.ServerLoginDataStore;
 import untref.tesis.gio.infrastructure.repository.DefaultLoginRepository;
 
 public class LoginFactory {
@@ -18,7 +19,7 @@ public class LoginFactory {
     }
 
     private static LoginRepository buildLoginRepository() {
-        return new DefaultLoginRepository();
+        return new DefaultLoginRepository(new ServerLoginDataStore());
     }
 
 }
