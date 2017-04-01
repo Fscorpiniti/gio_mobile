@@ -21,8 +21,8 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
     }
 
     public void login(View view) {
-        EditText editEmail = (EditText) view.findViewById(R.id.edit_email);
-        EditText editPassword = (EditText) view.findViewById(R.id.edit_password);
+        EditText editEmail = (EditText) findViewById(R.id.edit_email);
+        EditText editPassword = (EditText) findViewById(R.id.edit_password);
         String email = editEmail.getText().toString();
         String password = editPassword.getText().toString();
 

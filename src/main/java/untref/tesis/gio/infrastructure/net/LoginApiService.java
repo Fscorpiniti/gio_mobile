@@ -7,7 +7,7 @@ import retrofit2.http.Query;
 
 public interface LoginApiService {
 
-    @POST("/login")
+    @POST("login")
     void login(@Query("email") String email, @Query("password") String password);
 
 }
