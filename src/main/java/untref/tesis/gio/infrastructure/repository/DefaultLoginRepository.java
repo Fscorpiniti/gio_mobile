@@ -1,6 +1,6 @@
 package untref.tesis.gio.infrastructure.repository;
 
-import untref.tesis.gio.core.domain.LoginRepository;
+import untref.tesis.gio.infrastructure.domain.LoginRepository;
 import untref.tesis.gio.infrastructure.repository.datasource.LoginDataStore;
 
 public class DefaultLoginRepository implements LoginRepository {

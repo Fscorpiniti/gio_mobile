@@ -1,6 +1,6 @@
 package untref.tesis.gio.core.interactor;
 
-import untref.tesis.gio.core.domain.LoginRepository;
+import untref.tesis.gio.infrastructure.domain.LoginRepository;
 
 public class DefaultLoginInteractor implements LoginInteractor {
 

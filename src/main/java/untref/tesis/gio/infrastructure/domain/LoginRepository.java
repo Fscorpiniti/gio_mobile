@@ -1,4 +1,4 @@
-package untref.tesis.gio.core.domain;
+package untref.tesis.gio.infrastructure.domain;
 
 public interface LoginRepository {
 

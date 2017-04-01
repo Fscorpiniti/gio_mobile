@@ -2,6 +2,7 @@ package untref.tesis.gio.core.domain;
 
 import untref.tesis.gio.core.interactor.DefaultLoginInteractor;
 import untref.tesis.gio.core.interactor.LoginInteractor;
+import untref.tesis.gio.infrastructure.domain.LoginRepository;
 import untref.tesis.gio.infrastructure.domain.LoginRepositoryFactory;
 
 public class LoginInteractorFactory {
