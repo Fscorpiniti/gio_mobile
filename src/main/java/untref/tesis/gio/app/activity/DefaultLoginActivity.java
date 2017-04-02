@@ -2,12 +2,14 @@ package untref.tesis.gio.app.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import untref.tesis.gio.R;
 import untref.tesis.gio.app.domain.LoginPresenterFactory;
 import untref.tesis.gio.app.presenter.LoginPresenter;
+import untref.tesis.gio.core.domain.User;
 
 public class DefaultLoginActivity extends Activity implements LoginActivity {
 
@@ -27,6 +29,11 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
         String password = editPassword.getText().toString();
 
         loginPresenter.login(email, password);
+    }
+
+    @Override
+    public void successful(User user) {
+        Log.i("Logged User", user.getEmail());
     }
 
 }

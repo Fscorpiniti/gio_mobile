@@ -1,14 +1,15 @@
 package untref.tesis.gio.core.domain;
 
+import java.util.concurrent.Executors;
+
 import untref.tesis.gio.core.interactor.DefaultLoginInteractor;
 import untref.tesis.gio.core.interactor.LoginInteractor;
-import untref.tesis.gio.infrastructure.domain.LoginRepository;
-import untref.tesis.gio.infrastructure.domain.LoginRepositoryFactory;
 
 public class LoginInteractorFactory {
 
     public static LoginInteractor createInteractor() {
-        return new DefaultLoginInteractor(buildLoginRepository());
+        return new DefaultLoginInteractor(buildLoginRepository(),
+                Executors.newFixedThreadPool(5));
     }
 
     private static LoginRepository buildLoginRepository() {

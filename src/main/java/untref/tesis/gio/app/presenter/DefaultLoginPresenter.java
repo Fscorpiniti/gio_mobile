@@ -1,6 +1,7 @@
 package untref.tesis.gio.app.presenter;
 
 import untref.tesis.gio.app.activity.LoginActivity;
+import untref.tesis.gio.core.domain.LoginRequest;
 import untref.tesis.gio.core.interactor.LoginInteractor;
 
 public class DefaultLoginPresenter implements LoginPresenter {
@@ -15,7 +16,8 @@ public class DefaultLoginPresenter implements LoginPresenter {
 
     @Override
     public void login(String email, String password) {
-        this.loginInteractor.login(email, password);
+        LoginRequest loginRequest = new LoginRequest(email, password);
+        this.loginInteractor.login(loginRequest).subscribe(user -> loginActivity.successful(user));
     }
 
 }
