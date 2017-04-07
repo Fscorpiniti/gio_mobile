@@ -31,6 +31,10 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
         loginPresenter.login(email, password);
     }
 
+    public void createUser(View view) {
+
+    }
+
     @Override
     public void successful(User user) {
         Log.i("Logged User", user.getEmail());
