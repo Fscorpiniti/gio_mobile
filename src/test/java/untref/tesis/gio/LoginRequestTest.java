@@ -39,7 +39,7 @@ public class LoginRequestTest {
     @Test
     public void whenCreateLoginRequestWithEmptyPasswordThenExceptionIsThrown() throws Exception {
         thrown.expect(IllegalArgumentException.class);
-        new LoginRequest(EMPTY_STRING, VALID_PASSWORD);
+        new LoginRequest(VALID_EMAIL, EMPTY_STRING);
     }
 
 }
