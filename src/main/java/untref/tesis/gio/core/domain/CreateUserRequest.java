@@ -1,23 +1,23 @@
 package untref.tesis.gio.core.domain;
 
-public class User {
+public class CreateUserRequest {
 
-    private Integer id;
     private String email;
+    private String password;
     private String name;
 
-    public User(Integer id, String email, String name) {
-        this.id = id;
+    public CreateUserRequest(String email, String password, String name) {
         this.email = email;
+        this.password = password;
         this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getName() {

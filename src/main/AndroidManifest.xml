@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.activity.CreateUserActivity"/>
+        <activity android:name=".app.activity.DefaultCreateUserActivity"/>
 
     </application>
 

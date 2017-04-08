@@ -8,7 +8,7 @@ import untref.tesis.gio.core.infrastructure.datasource.ServerLoginDataStore;
 
 public class LoginRepositoryFactory {
 
-    public static LoginRepository createRepository() {
+    public static LoginRepository build() {
         return new DefaultLoginRepository(buildLoginDataStore());
     }
 

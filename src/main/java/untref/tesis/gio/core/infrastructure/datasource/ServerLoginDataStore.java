@@ -16,7 +16,8 @@ public class ServerLoginDataStore implements LoginDataStore {
 
     @Override
     public Observable<User> login(final LoginData loginData) {
-        return loginApiService.login(loginData).map(data -> new User(data.getId(), data.getEmail()));
+        return loginApiService.login(loginData).map(data -> new User(data.getId(), data.getEmail(),
+                data.getName()));
     }
 
 }

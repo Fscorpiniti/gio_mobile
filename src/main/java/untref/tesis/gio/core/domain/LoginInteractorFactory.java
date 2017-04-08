@@ -7,13 +7,13 @@ import untref.tesis.gio.core.interactor.LoginInteractor;
 
 public class LoginInteractorFactory {
 
-    public static LoginInteractor createInteractor() {
+    public static LoginInteractor build() {
         return new DefaultLoginInteractor(buildLoginRepository(),
                 Executors.newFixedThreadPool(5));
     }
 
     private static LoginRepository buildLoginRepository() {
-        return LoginRepositoryFactory.createRepository();
+        return LoginRepositoryFactory.build();
     }
 
 }

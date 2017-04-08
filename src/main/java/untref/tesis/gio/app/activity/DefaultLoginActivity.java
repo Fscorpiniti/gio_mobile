@@ -19,10 +19,11 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        loginPresenter = LoginPresenterFactory.createPresenter(this);
+        loginPresenter = LoginPresenterFactory.build(this);
         setContentView(R.layout.default_login_activity);
     }
 
+    @Override
     public void login(View view) {
         EditText editEmail = (EditText) findViewById(R.id.login_edit_email);
         EditText editPassword = (EditText) findViewById(R.id.login_edit_password);
@@ -33,7 +34,7 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
     }
 
     public void createUser(View view) {
-        Intent intent = new Intent(this, CreateUserActivity.class);
+        Intent intent = new Intent(this, DefaultCreateUserActivity.class);
         startActivity(intent);
     }
 

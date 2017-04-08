@@ -8,12 +8,12 @@ import untref.tesis.gio.app.presenter.LoginPresenter;
 
 public class LoginPresenterFactory {
 
-    public static LoginPresenter createPresenter(LoginActivity loginActivity) {
+    public static LoginPresenter build(LoginActivity loginActivity) {
         return new DefaultLoginPresenter(loginActivity, buildLoginInteractor());
     }
 
     private static LoginInteractor buildLoginInteractor() {
-        return LoginInteractorFactory.createInteractor();
+        return LoginInteractorFactory.build();
     }
 
 }

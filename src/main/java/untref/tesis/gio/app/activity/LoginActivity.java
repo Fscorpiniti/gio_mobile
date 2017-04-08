@@ -10,4 +10,5 @@ public interface LoginActivity {
     void login(View view);
 
     void successful(User user);
+
 }

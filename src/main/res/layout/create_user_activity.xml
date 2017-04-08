@@ -62,6 +62,7 @@
         android:text="@string/button_create_user"
         android:layout_below="@id/create_user_edit_password"
         android:layout_centerHorizontal="false"
+        android:onClick="create"
         android:layout_marginTop="30dp"/>
 
 </RelativeLayout>

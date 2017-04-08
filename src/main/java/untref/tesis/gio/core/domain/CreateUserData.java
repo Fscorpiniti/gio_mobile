@@ -1,32 +1,31 @@
 package untref.tesis.gio.core.domain;
 
+
 import com.google.gson.annotations.SerializedName;
 
-public class LoginResponse {
-
-    @SerializedName("id")
-    private Integer id;
+public class CreateUserData {
 
     @SerializedName("email")
     private String email;
 
+    @SerializedName("password")
+    private String password;
+
     @SerializedName("name")
     private String name;
 
-    public LoginResponse() {}
-
-    public LoginResponse(Integer id, String email, String name) {
-        this.id = id;
+    public CreateUserData(String email, String password, String name) {
         this.email = email;
+        this.password = password;
         this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getName() {
