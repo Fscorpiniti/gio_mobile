@@ -3,58 +3,65 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView android:id="@+id/login_text_view_email"
+    <TextView android:id="@+id/create_user_text_view_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/edit_email"
+        android:text="@string/edit_name"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="30dp"/>
 
-    <EditText android:id="@+id/login_edit_email"
+    <EditText android:id="@+id/create_user_edit_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="200dp"
+        android:hint="@string/edit_name"
+        android:layout_below="@id/create_user_text_view_name"
+        android:layout_marginBottom="20dp"
+        android:maxLines="1"
+        android:inputType="text" />
+
+    <TextView android:id="@+id/create_user_text_view_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_email"
+        android:layout_below="@id/create_user_edit_name"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"/>
+
+    <EditText android:id="@+id/create_user_edit_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="200dp"
         android:hint="@string/edit_email"
-        android:layout_below="@id/login_text_view_email"
+        android:layout_below="@id/create_user_text_view_email"
         android:layout_marginBottom="20dp"
         android:maxLines="1"
         android:inputType="text" />
 
-    <TextView android:id="@+id/login_text_view_password"
+    <TextView android:id="@+id/create_user_text_view_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/edit_password"
-        android:layout_below="@id/login_edit_email"
+        android:layout_below="@id/create_user_edit_email"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="30dp"/>
 
-    <EditText android:id="@+id/login_edit_password"
+    <EditText android:id="@+id/create_user_edit_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="200dp"
         android:hint="@string/edit_password"
-        android:layout_below="@id/login_text_view_password"
+        android:layout_below="@id/create_user_text_view_password"
         android:layout_marginBottom="20dp"
         android:maxLines="1"
         android:inputType="text" />
 
-    <Button android:id="@+id/login_btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_send_login"
-        android:layout_below="@id/login_edit_password"
-        android:layout_centerHorizontal="false"
-        android:onClick="login"
-        android:layout_marginTop="30dp"/>
-
-    <Button
+    <Button android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_create_user"
-        android:layout_toRightOf="@id/login_btn_login"
-        android:layout_below="@id/login_edit_password"
+        android:layout_below="@id/create_user_edit_password"
         android:layout_centerHorizontal="false"
-        android:onClick="createUser"
         android:layout_marginTop="30dp"/>
 
 </RelativeLayout>

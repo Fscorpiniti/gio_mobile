@@ -1,6 +1,7 @@
 package untref.tesis.gio.app.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,8 +24,8 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
     }
 
     public void login(View view) {
-        EditText editEmail = (EditText) findViewById(R.id.edit_email);
-        EditText editPassword = (EditText) findViewById(R.id.edit_password);
+        EditText editEmail = (EditText) findViewById(R.id.login_edit_email);
+        EditText editPassword = (EditText) findViewById(R.id.login_edit_password);
         String email = editEmail.getText().toString();
         String password = editPassword.getText().toString();
 
@@ -32,7 +33,8 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
     }
 
     public void createUser(View view) {
-
+        Intent intent = new Intent(this, CreateUserActivity.class);
+        startActivity(intent);
     }
 
     @Override

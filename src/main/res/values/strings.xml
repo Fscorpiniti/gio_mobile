@@ -4,4 +4,5 @@
     <string name="edit_password">Password</string>
     <string name="button_send_login">Entrar</string>
     <string name="button_create_user">Crear Usuario</string>
+    <string name="edit_name">Nombre</string>
 </resources>
