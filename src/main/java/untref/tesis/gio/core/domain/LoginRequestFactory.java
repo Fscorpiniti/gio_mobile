@@ -2,7 +2,7 @@ package untref.tesis.gio.core.domain;
 
 import org.apache.commons.lang3.StringUtils;
 
-import untref.tesis.gio.core.exception.ValidationException;
+import untref.tesis.gio.app.exception.ValidationException;
 
 public class LoginRequestFactory {
 

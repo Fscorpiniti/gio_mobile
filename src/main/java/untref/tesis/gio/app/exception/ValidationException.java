@@ -1,4 +1,4 @@
-package untref.tesis.gio.core.exception;
+package untref.tesis.gio.app.exception;
 
 public class ValidationException extends Throwable {
 

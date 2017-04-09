@@ -3,7 +3,6 @@ package untref.tesis.gio.app.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,7 +11,7 @@ import untref.tesis.gio.R;
 import untref.tesis.gio.app.domain.LoginPresenterFactory;
 import untref.tesis.gio.app.presenter.LoginPresenter;
 import untref.tesis.gio.core.domain.User;
-import untref.tesis.gio.core.exception.ValidationException;
+import untref.tesis.gio.app.exception.ValidationException;
 
 public class DefaultLoginActivity extends Activity implements LoginActivity {
 
@@ -42,7 +41,9 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
 
     @Override
     public void successful(User user) {
-        Log.i("Logged User", user.getEmail());
+        Intent intent = new Intent(this, DashboardActivity.class);
+        intent.putExtra(USER_LOGGED, user.getEmail());
+        startActivity(intent);
     }
 
     @Override

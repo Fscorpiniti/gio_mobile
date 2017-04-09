@@ -5,7 +5,7 @@ import com.annimon.stream.Optional;
 import untref.tesis.gio.app.activity.LoginActivity;
 import untref.tesis.gio.core.domain.LoginRequest;
 import untref.tesis.gio.core.domain.LoginRequestFactory;
-import untref.tesis.gio.core.exception.ValidationException;
+import untref.tesis.gio.app.exception.ValidationException;
 import untref.tesis.gio.core.interactor.LoginInteractor;
 
 public class DefaultLoginPresenter implements LoginPresenter {
