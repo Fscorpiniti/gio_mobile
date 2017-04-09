@@ -4,6 +4,7 @@ package untref.tesis.gio.app.activity;
 import android.view.View;
 
 import untref.tesis.gio.core.domain.User;
+import untref.tesis.gio.core.exception.ValidationException;
 
 public interface LoginActivity {
 
@@ -11,4 +12,5 @@ public interface LoginActivity {
 
     void successful(User user);
 
+    void handleError(ValidationException e);
 }

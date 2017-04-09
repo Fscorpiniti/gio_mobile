@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import untref.tesis.gio.R;
 import untref.tesis.gio.app.domain.LoginPresenterFactory;
 import untref.tesis.gio.app.presenter.LoginPresenter;
 import untref.tesis.gio.core.domain.User;
+import untref.tesis.gio.core.exception.ValidationException;
 
 public class DefaultLoginActivity extends Activity implements LoginActivity {
 
@@ -41,6 +43,11 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
     @Override
     public void successful(User user) {
         Log.i("Logged User", user.getEmail());
+    }
+
+    @Override
+    public void handleError(ValidationException e) {
+        Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -1,6 +1,8 @@
 package untref.tesis.gio.core.interactor;
 
 
+import android.support.annotation.NonNull;
+
 import java.util.concurrent.Executor;
 
 import io.reactivex.Observable;
@@ -23,9 +25,12 @@ public class DefaultLoginInteractor implements LoginInteractor {
 
     @Override
     public Observable<User> login(LoginRequest loginRequest) {
-        return loginRepository.login(new LoginData(loginRequest.getEmail(),
-                loginRequest.getPassword())).subscribeOn(Schedulers.from(executor))
+        return loginRepository.login(buildLoginData(loginRequest)).subscribeOn(Schedulers.from(executor))
                 .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    private LoginData buildLoginData(LoginRequest loginRequest) {
+        return new LoginData(loginRequest.getEmail(), loginRequest.getPassword());
     }
 
 }
