@@ -4,8 +4,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import untref.tesis.gio.core.domain.LoginRequestFactory;
-import untref.tesis.gio.app.exception.ValidationException;
+import untref.tesis.gio.presentation.exception.ValidationException;
 
 
 public class LoginRequestFactoryTest {

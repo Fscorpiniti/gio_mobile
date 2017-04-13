@@ -1,0 +1,9 @@
+package untref.tesis.gio.domain;
+
+import io.reactivex.Observable;
+
+public interface LoginRepository {
+
+    Observable<User> login(LoginData loginData);
+
+}
