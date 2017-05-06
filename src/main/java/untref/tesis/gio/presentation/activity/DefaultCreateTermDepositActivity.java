@@ -12,13 +12,13 @@ import org.apache.commons.lang3.StringUtils;
 
 import untref.tesis.gio.R;
 import untref.tesis.gio.presentation.domain.CreateTermDepositPresenterFactory;
+import untref.tesis.gio.presentation.domain.InterestCalculator;
 import untref.tesis.gio.presentation.presenter.CreateTermDepositPresenter;
 
 public class DefaultCreateTermDepositActivity extends Activity implements CreateTermDepositActivity,
         AdapterView.OnItemSelectedListener {
 
     private static final String PERCENTAGE = "%";
-    private static final int MAX_PERCENTAGE = 100;
     private CreateTermDepositPresenter createTermDepositPresenter;
 
     @Override
@@ -53,17 +53,17 @@ public class DefaultCreateTermDepositActivity extends Activity implements Create
 
         if (StringUtils.isNotBlank(amount)) {
             refreshComponent(R.id.interest_value_term_deposit_text_view,
-                    String.valueOf(calculateInterest(Double.valueOf(amount), rate, durationInMonths)));
+                    String.valueOf(calculateInterest(rate, durationInMonths, amount)));
         }
+    }
+
+    private Double calculateInterest(Double rate, Integer durationInMonths, String amount) {
+        return new InterestCalculator().calculate(Double.valueOf(amount), rate, durationInMonths);
     }
 
     private void refreshComponent(int rate_value_term_deposit_text_view, String text) {
         TextView rateTextView = (TextView) findViewById(rate_value_term_deposit_text_view);
         rateTextView.setText(text);
-    }
-
-    private Double calculateInterest(Double amount, Double rate, Integer durationInMonths) {
-        return amount * rate * durationInMonths / MAX_PERCENTAGE;
     }
 
     private String buildRatePercentage(Double rate) {
