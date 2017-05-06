@@ -1,8 +1,8 @@
-package untref.tesis.gio.domain;
+package untref.tesis.gio.infrastructure;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CreateUserResponse {
+public class LoginResponse {
 
     @SerializedName("id")
     private Integer id;
@@ -12,6 +12,14 @@ public class CreateUserResponse {
 
     @SerializedName("name")
     private String name;
+
+    public LoginResponse() {}
+
+    public LoginResponse(Integer id, String email, String name) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;

@@ -4,7 +4,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import untref.tesis.gio.domain.LoginData;
-import untref.tesis.gio.domain.LoginResponse;
+import untref.tesis.gio.infrastructure.LoginResponse;
 
 public interface LoginApiService {
 
