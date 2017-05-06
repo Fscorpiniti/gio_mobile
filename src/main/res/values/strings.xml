@@ -9,4 +9,14 @@
     <string name="create_term_deposit">Crear plazo fijo</string>
     <string name="amount">Cantidad</string>
     <string name="button_create_term_deposit">Crear plazo fijo</string>
+    <string name="duration_term_deposit_prompt">Seleccione la duracion</string>
+    <string name="duration">Duracion</string>
+
+    <string-array name="duration_term_deposit_entries">
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>180</item>
+        <item>360</item>
+    </string-array>
 </resources>
