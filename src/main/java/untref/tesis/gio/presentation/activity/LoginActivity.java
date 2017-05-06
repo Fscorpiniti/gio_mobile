@@ -14,6 +14,6 @@ public interface LoginActivity {
 
     void successful(User user);
 
-    void handleError(ValidationException e);
+    void notifyError(String message);
 
 }

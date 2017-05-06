@@ -47,8 +47,8 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
     }
 
     @Override
-    public void handleError(ValidationException e) {
-        Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+    public void notifyError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 }

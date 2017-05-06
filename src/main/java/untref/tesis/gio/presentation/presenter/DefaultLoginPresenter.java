@@ -23,7 +23,8 @@ public class DefaultLoginPresenter implements LoginPresenter {
         Optional<LoginRequest> loginRequestOptional = buildLoginRequest(email, password);
 
         if (loginRequestOptional.isPresent()) {
-            this.loginInteractor.login(loginRequestOptional.get()).subscribe(user -> loginActivity.successful(user));
+            this.loginInteractor.login(loginRequestOptional.get())
+                    .subscribe(user -> loginActivity.successful(user));
         }
     }
 
@@ -31,7 +32,7 @@ public class DefaultLoginPresenter implements LoginPresenter {
         try {
             return Optional.of(LoginRequestFactory.build(email, password));
         } catch (ValidationException e) {
-            this.loginActivity.handleError(e);
+            this.loginActivity.notifyError(e.getMessage());
             return Optional.empty();
         }
     }
