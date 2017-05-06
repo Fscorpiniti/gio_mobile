@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView android:id="@+id/amount_term_deposit_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/amount"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"/>
+
+    <EditText android:id="@+id/amout_term_deposit_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="200dp"
+        android:hint="@string/amount"
+        android:layout_below="@id/amount_term_deposit_text_view"
+        android:layout_marginBottom="20dp"
+        android:maxLines="1"
+        android:inputType="text" />
+
+    <Button android:id="@+id/btn_create_term_deposit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_create_term_deposit"
+        android:layout_below="@id/amout_term_deposit_edit"
+        android:layout_centerHorizontal="false"
+        android:onClick="create"
+        android:layout_marginTop="30dp"/>
+
+</RelativeLayout>

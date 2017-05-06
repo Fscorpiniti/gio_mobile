@@ -41,7 +41,7 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
 
     @Override
     public void successful(User user) {
-        Intent intent = new Intent(this, DashboardActivity.class);
+        Intent intent = new Intent(this, DefaultDashboardActivity.class);
         intent.putExtra(USER_LOGGED, user.getEmail());
         startActivity(intent);
     }

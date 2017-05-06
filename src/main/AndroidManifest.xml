@@ -21,8 +21,8 @@
         </activity>
 
         <activity android:name=".presentation.activity.DefaultCreateUserActivity"/>
-        <activity android:name=".presentation.activity.DashboardActivity"/>
-
+        <activity android:name=".presentation.activity.DefaultDashboardActivity"/>
+        <activity android:name=".presentation.activity.DefaultCreateTermDepositActivity"/>
     </application>
 
 </manifest>
