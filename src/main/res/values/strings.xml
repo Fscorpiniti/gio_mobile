@@ -5,4 +5,6 @@
     <string name="button_send_login">Entrar</string>
     <string name="button_create_user">Crear Usuario</string>
     <string name="edit_name">Nombre</string>
+    <string name="create_investments">Crear inversiones</string>
+    <string name="create_term_deposit">Crear plazo fijo</string>
 </resources>
