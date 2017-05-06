@@ -11,6 +11,11 @@ public class TermDepositInformation {
     private static final int QUARTER = 90;
     private static final int SEMI_ANNUAL = 180;
     private static final int ANNUAL = 360;
+    private static final int ONE_MONTH = 1;
+    private static final int TWO_MONTH = 2;
+    private static final int THREE_MONTH = 3;
+    private static final int SIX_MONTH = 6;
+    private static final int TWELVE_MONTH = 12;
 
     private Double monthlyRate;
     private Double biMonthlyRate;
@@ -46,7 +51,7 @@ public class TermDepositInformation {
             return annualRate;
         }
 
-    public Double getForDuration(Integer duration) {
+    public Double findRateByDuration(Integer duration) {
         Map<Integer, Double> rateByDuration = new HashMap<>();
         rateByDuration.put(MONTH, getMonthlyRate());
         rateByDuration.put(BIMONTH, getBiMonthlyRate());
@@ -55,5 +60,16 @@ public class TermDepositInformation {
         rateByDuration.put(ANNUAL, getAnnualRate());
 
         return rateByDuration.get(duration);
+    }
+
+    public Integer findAmountOfMonths(Integer duration) {
+        Map<Integer, Integer> amountOfMonthsByDuration = new HashMap<>();
+        amountOfMonthsByDuration.put(MONTH, ONE_MONTH);
+        amountOfMonthsByDuration.put(BIMONTH, TWO_MONTH);
+        amountOfMonthsByDuration.put(QUARTER, THREE_MONTH);
+        amountOfMonthsByDuration.put(SEMI_ANNUAL, SIX_MONTH);
+        amountOfMonthsByDuration.put(ANNUAL, TWELVE_MONTH);
+
+        return amountOfMonthsByDuration.get(duration);
     }
 }

@@ -52,11 +52,26 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="30dp"/>
 
+    <TextView android:id="@+id/interest_term_deposit_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/interest"
+        android:layout_below="@id/rate_value_term_deposit_text_view"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"/>
+
+    <TextView android:id="@+id/interest_value_term_deposit_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/interest_term_deposit_text_view"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"/>
+
     <Button android:id="@+id/btn_create_term_deposit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_create_term_deposit"
-        android:layout_below="@id/rate_value_term_deposit_text_view"
+        android:layout_below="@id/interest_value_term_deposit_text_view"
         android:layout_centerHorizontal="false"
         android:onClick="create"
         android:layout_marginTop="30dp"/>

@@ -2,5 +2,6 @@ package untref.tesis.gio.presentation.activity;
 
 public interface CreateTermDepositActivity {
 
-    void updateRateValue(Double rate);
+    void refreshByChangeRate(Double rate, Integer duration);
+
 }
