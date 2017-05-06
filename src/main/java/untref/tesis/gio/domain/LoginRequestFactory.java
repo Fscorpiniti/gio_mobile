@@ -22,6 +22,8 @@ public class LoginRequestFactory {
         if (StringUtils.isBlank(email)) {
             throw new ValidationException("Email is required");
         }
+
+        new EmailValidator().validate(email);
     }
 
 }
