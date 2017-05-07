@@ -1,5 +1,7 @@
 package untref.tesis.gio.presentation.presenter;
 
+import android.support.annotation.NonNull;
+
 import untref.tesis.gio.domain.CreateTermDepositRequest;
 import untref.tesis.gio.domain.interactor.CreateTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.FindRateInteractor;
@@ -29,8 +31,13 @@ public class DefaultCreateTermDepositPresenter implements CreateTermDepositPrese
 
     @Override
     public void create(Integer ownerId, Double amount, Double rate, Integer duration) {
-        createTermDepositInteractor.execute(new CreateTermDepositRequest(ownerId, amount, duration, rate))
+        createTermDepositInteractor.execute(buildCreateTermDepositRequest(ownerId, amount, rate, duration))
                 .subscribe(termDeposit -> this.createTermDepositActivity.sucessfulCreationTermDeposit(termDeposit));
+    }
+
+    @NonNull
+    private CreateTermDepositRequest buildCreateTermDepositRequest(Integer ownerId, Double amount, Double rate, Integer duration) {
+        return new CreateTermDepositRequest(ownerId, amount, duration, rate);
     }
 
 }
