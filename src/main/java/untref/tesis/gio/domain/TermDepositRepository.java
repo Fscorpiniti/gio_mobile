@@ -6,4 +6,5 @@ public interface TermDepositRepository {
 
     Observable<TermDepositInformation> findTermDepositInformationForCreation();
 
+    Observable<TermDeposit> add(TermDepositData termDepositData);
 }
