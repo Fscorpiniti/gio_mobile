@@ -10,8 +10,10 @@ import untref.tesis.gio.domain.interactor.DefaultCreateTermDepositInteractor;
 
 public class CreateTermDepositInteractorFactory {
 
+    public static final int NUMBER_THREADS = 5;
+
     public static CreateTermDepositInteractor build() {
         return new DefaultCreateTermDepositInteractor(TermDepositRepositoryFactory.build(),
-                Schedulers.from(Executors.newFixedThreadPool(5)), AndroidSchedulers.mainThread());
+                Schedulers.from(Executors.newFixedThreadPool(NUMBER_THREADS)), AndroidSchedulers.mainThread());
     }
 }
