@@ -2,7 +2,7 @@ package untref.tesis.gio.presentation.presenter;
 
 import android.support.annotation.NonNull;
 
-import untref.tesis.gio.domain.CreateTermDepositRequest;
+import untref.tesis.gio.domain.request.CreateTermDepositRequest;
 import untref.tesis.gio.domain.interactor.CreateTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.FindRateInteractor;
 import untref.tesis.gio.presentation.activity.CreateTermDepositActivity;

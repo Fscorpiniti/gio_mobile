@@ -6,10 +6,10 @@ import java.util.concurrent.Executor;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import untref.tesis.gio.domain.LoginData;
-import untref.tesis.gio.domain.LoginRepository;
-import untref.tesis.gio.domain.LoginRequest;
-import untref.tesis.gio.domain.User;
+import untref.tesis.gio.domain.data.LoginData;
+import untref.tesis.gio.domain.repository.LoginRepository;
+import untref.tesis.gio.domain.request.LoginRequest;
+import untref.tesis.gio.domain.entity.User;
 
 public class DefaultLoginInteractor implements LoginInteractor {
 

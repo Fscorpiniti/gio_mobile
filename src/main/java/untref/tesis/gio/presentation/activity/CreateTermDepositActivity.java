@@ -1,6 +1,6 @@
 package untref.tesis.gio.presentation.activity;
 
-import untref.tesis.gio.domain.TermDeposit;
+import untref.tesis.gio.domain.entity.TermDeposit;
 
 public interface CreateTermDepositActivity {
 

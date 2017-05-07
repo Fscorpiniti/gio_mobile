@@ -9,7 +9,7 @@ import android.widget.EditText;
 import untref.tesis.gio.R;
 import untref.tesis.gio.presentation.domain.CreateUserPresenterFactory;
 import untref.tesis.gio.presentation.presenter.CreateUserPresenter;
-import untref.tesis.gio.domain.User;
+import untref.tesis.gio.domain.entity.User;
 
 public class DefaultCreateUserActivity extends Activity implements CreateUserActivity {
 

@@ -5,10 +5,10 @@ import java.util.concurrent.Executor;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import untref.tesis.gio.domain.CreateUserData;
-import untref.tesis.gio.domain.CreateUserRequest;
-import untref.tesis.gio.domain.User;
-import untref.tesis.gio.domain.UserRepository;
+import untref.tesis.gio.domain.data.CreateUserData;
+import untref.tesis.gio.domain.request.CreateUserRequest;
+import untref.tesis.gio.domain.entity.User;
+import untref.tesis.gio.domain.repository.UserRepository;
 
 public class DefaultCreateUserInteractor implements CreateUserInteractor {
 

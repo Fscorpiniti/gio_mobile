@@ -1,9 +1,9 @@
 package untref.tesis.gio.infrastructure.datasource;
 
 import io.reactivex.Observable;
-import untref.tesis.gio.domain.CreateUserData;
-import untref.tesis.gio.domain.User;
-import untref.tesis.gio.domain.UserEconomy;
+import untref.tesis.gio.domain.data.CreateUserData;
+import untref.tesis.gio.domain.entity.User;
+import untref.tesis.gio.domain.entity.UserEconomy;
 import untref.tesis.gio.infrastructure.net.CreateUserApiService;
 
 public class ServerUserDataStore implements UserDataStore {

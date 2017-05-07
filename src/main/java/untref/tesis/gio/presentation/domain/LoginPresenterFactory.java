@@ -1,7 +1,7 @@
 package untref.tesis.gio.presentation.domain;
 
 import untref.tesis.gio.presentation.activity.LoginActivity;
-import untref.tesis.gio.domain.LoginInteractorFactory;
+import untref.tesis.gio.domain.factory.LoginInteractorFactory;
 import untref.tesis.gio.domain.interactor.LoginInteractor;
 import untref.tesis.gio.presentation.presenter.DefaultLoginPresenter;
 import untref.tesis.gio.presentation.presenter.LoginPresenter;

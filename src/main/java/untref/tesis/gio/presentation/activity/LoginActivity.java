@@ -3,8 +3,7 @@ package untref.tesis.gio.presentation.activity;
 
 import android.view.View;
 
-import untref.tesis.gio.domain.User;
-import untref.tesis.gio.presentation.exception.ValidationException;
+import untref.tesis.gio.domain.entity.User;
 
 public interface LoginActivity {
 

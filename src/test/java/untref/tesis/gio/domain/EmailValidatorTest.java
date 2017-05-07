@@ -3,6 +3,7 @@ package untref.tesis.gio.domain;
 
 import org.junit.Test;
 
+import untref.tesis.gio.domain.validator.EmailValidator;
 import untref.tesis.gio.presentation.exception.ValidationException;
 
 public class EmailValidatorTest {

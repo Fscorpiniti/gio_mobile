@@ -1,7 +1,7 @@
 package untref.tesis.gio.presentation.domain;
 
-import untref.tesis.gio.domain.CreateTermDepositInteractorFactory;
-import untref.tesis.gio.domain.FindRateInteractorFactory;
+import untref.tesis.gio.domain.factory.CreateTermDepositInteractorFactory;
+import untref.tesis.gio.domain.factory.FindRateInteractorFactory;
 import untref.tesis.gio.domain.interactor.CreateTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.FindRateInteractor;
 import untref.tesis.gio.presentation.activity.CreateTermDepositActivity;

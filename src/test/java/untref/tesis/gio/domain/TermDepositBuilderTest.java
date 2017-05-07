@@ -3,7 +3,8 @@ package untref.tesis.gio.domain;
 
 import org.junit.Test;
 
-import untref.tesis.gio.infrastructure.TermDepositStatus;
+import untref.tesis.gio.domain.factory.TermDepositBuilder;
+import untref.tesis.gio.domain.entity.TermDepositStatus;
 
 public class TermDepositBuilderTest {
 

@@ -5,9 +5,9 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import untref.tesis.gio.domain.TermDepositData;
-import untref.tesis.gio.infrastructure.TermDepositInformationResponse;
-import untref.tesis.gio.infrastructure.TermDepositResponse;
+import untref.tesis.gio.domain.data.TermDepositData;
+import untref.tesis.gio.infrastructure.response.TermDepositInformationResponse;
+import untref.tesis.gio.infrastructure.response.TermDepositResponse;
 
 public interface TermDepositApiService {
 

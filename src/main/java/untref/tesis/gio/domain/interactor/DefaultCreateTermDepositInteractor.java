@@ -1,16 +1,11 @@
 package untref.tesis.gio.domain.interactor;
 
-import java.util.concurrent.Executor;
-
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-import untref.tesis.gio.domain.CreateTermDepositRequest;
-import untref.tesis.gio.domain.TermDeposit;
-import untref.tesis.gio.domain.TermDepositData;
-import untref.tesis.gio.domain.TermDepositDataFactory;
-import untref.tesis.gio.domain.TermDepositRepository;
+import untref.tesis.gio.domain.request.CreateTermDepositRequest;
+import untref.tesis.gio.domain.entity.TermDeposit;
+import untref.tesis.gio.domain.factory.TermDepositDataFactory;
+import untref.tesis.gio.domain.repository.TermDepositRepository;
 
 
 public class DefaultCreateTermDepositInteractor implements CreateTermDepositInteractor {

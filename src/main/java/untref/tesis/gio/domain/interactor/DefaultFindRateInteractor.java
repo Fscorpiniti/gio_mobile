@@ -5,8 +5,8 @@ import java.util.concurrent.ExecutorService;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import untref.tesis.gio.domain.TermDepositInformation;
-import untref.tesis.gio.domain.TermDepositRepository;
+import untref.tesis.gio.domain.entity.TermDepositInformation;
+import untref.tesis.gio.domain.repository.TermDepositRepository;
 
 
 public class DefaultFindRateInteractor implements FindRateInteractor {

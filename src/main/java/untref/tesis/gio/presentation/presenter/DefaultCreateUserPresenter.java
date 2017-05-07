@@ -1,7 +1,7 @@
 package untref.tesis.gio.presentation.presenter;
 
 import untref.tesis.gio.presentation.activity.CreateUserActivity;
-import untref.tesis.gio.domain.CreateUserRequest;
+import untref.tesis.gio.domain.request.CreateUserRequest;
 import untref.tesis.gio.domain.interactor.CreateUserInteractor;
 
 public class DefaultCreateUserPresenter implements CreateUserPresenter {

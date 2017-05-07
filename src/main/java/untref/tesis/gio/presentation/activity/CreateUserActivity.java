@@ -1,6 +1,6 @@
 package untref.tesis.gio.presentation.activity;
 
-import untref.tesis.gio.domain.User;
+import untref.tesis.gio.domain.entity.User;
 
 public interface CreateUserActivity {
 

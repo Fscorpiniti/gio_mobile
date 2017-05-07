@@ -1,17 +1,14 @@
 package untref.tesis.gio.infrastructure.datasource;
 
 
-import android.support.annotation.NonNull;
-import android.util.Log;
-
 import io.reactivex.Observable;
-import untref.tesis.gio.domain.TermDeposit;
-import untref.tesis.gio.domain.TermDepositBuilder;
-import untref.tesis.gio.domain.TermDepositData;
-import untref.tesis.gio.domain.TermDepositInformation;
-import untref.tesis.gio.infrastructure.TermDepositInformationFactory;
-import untref.tesis.gio.infrastructure.TermDepositInformationResponse;
-import untref.tesis.gio.infrastructure.TermDepositResponse;
+import untref.tesis.gio.domain.entity.TermDeposit;
+import untref.tesis.gio.domain.factory.TermDepositBuilder;
+import untref.tesis.gio.domain.data.TermDepositData;
+import untref.tesis.gio.domain.entity.TermDepositInformation;
+import untref.tesis.gio.domain.factory.TermDepositInformationFactory;
+import untref.tesis.gio.infrastructure.response.TermDepositInformationResponse;
+import untref.tesis.gio.infrastructure.response.TermDepositResponse;
 import untref.tesis.gio.infrastructure.net.TermDepositApiService;
 
 public class ServerTermDepositDataStore implements TermDepositDataStore {

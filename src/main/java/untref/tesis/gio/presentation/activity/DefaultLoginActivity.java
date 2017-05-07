@@ -12,7 +12,7 @@ import android.widget.Toast;
 import untref.tesis.gio.R;
 import untref.tesis.gio.presentation.domain.LoginPresenterFactory;
 import untref.tesis.gio.presentation.presenter.LoginPresenter;
-import untref.tesis.gio.domain.User;
+import untref.tesis.gio.domain.entity.User;
 
 public class DefaultLoginActivity extends Activity implements LoginActivity {
 

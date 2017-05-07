@@ -15,7 +15,7 @@ import android.widget.Toast;
 import org.apache.commons.lang3.StringUtils;
 
 import untref.tesis.gio.R;
-import untref.tesis.gio.domain.TermDeposit;
+import untref.tesis.gio.domain.entity.TermDeposit;
 import untref.tesis.gio.presentation.domain.CreateTermDepositPresenterFactory;
 import untref.tesis.gio.presentation.domain.InterestCalculator;
 import untref.tesis.gio.presentation.presenter.CreateTermDepositPresenter;

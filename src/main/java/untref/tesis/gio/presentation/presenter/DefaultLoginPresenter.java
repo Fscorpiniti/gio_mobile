@@ -3,8 +3,8 @@ package untref.tesis.gio.presentation.presenter;
 import java.util.Optional;
 
 import untref.tesis.gio.presentation.activity.LoginActivity;
-import untref.tesis.gio.domain.LoginRequest;
-import untref.tesis.gio.domain.LoginRequestFactory;
+import untref.tesis.gio.domain.request.LoginRequest;
+import untref.tesis.gio.domain.factory.LoginRequestFactory;
 import untref.tesis.gio.presentation.exception.ValidationException;
 import untref.tesis.gio.domain.interactor.LoginInteractor;
 
