@@ -25,13 +25,14 @@ public class CreateTermDepositInteractorTest {
     private static final int DEFAULT_OWNER_ID = 1;
     private static final int DEFAULT_DURATION = 30;
     private static final Double DEFAULT_AMOUNT = new Double(100);
+    private static final Double DEFAULT_RATE = new Double(15);
     private static final int NUMBER_THREADS = 1;
 
     private CreateTermDepositRequest createTermDepositRequest;
 
     @Test
     public void whenCreateTermDepositThenTermDepositIsCreated() {
-        buildCreateTermDepositRequest(DEFAULT_OWNER_ID, DEFAULT_AMOUNT, DEFAULT_DURATION);
+        buildCreateTermDepositRequest(DEFAULT_OWNER_ID, DEFAULT_AMOUNT, DEFAULT_DURATION, DEFAULT_RATE);
         TermDepositData data = new TermDepositDataFactory().build(createTermDepositRequest);
         TermDeposit termDeposit = Mockito.mock(TermDeposit.class);
         TermDepositRepository termDepositRepository = Mockito.mock(TermDepositRepository.class);
@@ -48,8 +49,8 @@ public class CreateTermDepositInteractorTest {
         return Schedulers.from(Executors.newFixedThreadPool(NUMBER_THREADS));
     }
 
-    private void buildCreateTermDepositRequest(Integer ownerId, Double amount, Integer duration) {
-        createTermDepositRequest = new CreateTermDepositRequest(ownerId, amount, duration);
+    private void buildCreateTermDepositRequest(Integer ownerId, Double amount, Integer duration, Double rate) {
+        createTermDepositRequest = new CreateTermDepositRequest(ownerId, amount, duration, rate);
     }
 
 }

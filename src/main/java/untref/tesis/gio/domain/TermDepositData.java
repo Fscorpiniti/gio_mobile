@@ -6,11 +6,13 @@ public class TermDepositData {
     private Integer ownerId;
     private Double amount;
     private Integer duration;
+    private Double rate;
 
-    public TermDepositData(Integer ownerId, Double amount, Integer duration) {
+    public TermDepositData(Integer ownerId, Double amount, Integer duration, Double rate) {
         this.ownerId = ownerId;
         this.amount = amount;
         this.duration = duration;
+        this.rate = rate;
     }
 
     public Integer getOwnerId() {
@@ -25,6 +27,10 @@ public class TermDepositData {
         return duration;
     }
 
+    public Double getRate() {
+        return rate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,7 +40,8 @@ public class TermDepositData {
 
         if (!ownerId.equals(that.ownerId)) return false;
         if (!amount.equals(that.amount)) return false;
-        return duration.equals(that.duration);
+        if (!duration.equals(that.duration)) return false;
+        return rate.equals(that.rate);
 
     }
 
@@ -43,6 +50,7 @@ public class TermDepositData {
         int result = ownerId.hashCode();
         result = 31 * result + amount.hashCode();
         result = 31 * result + duration.hashCode();
+        result = 31 * result + rate.hashCode();
         return result;
     }
 }

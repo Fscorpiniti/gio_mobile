@@ -6,11 +6,13 @@ public class CreateTermDepositRequest {
     private Integer ownerId;
     private Double amount;
     private Integer duration;
+    private Double rate;
 
-    public CreateTermDepositRequest(Integer ownerId, Double amount, Integer duration) {
+    public CreateTermDepositRequest(Integer ownerId, Double amount, Integer duration, Double rate) {
         this.ownerId = ownerId;
         this.amount = amount;
         this.duration = duration;
+        this.rate = rate;
     }
 
     public Integer getOwnerId() {
@@ -23,5 +25,9 @@ public class CreateTermDepositRequest {
 
     public Integer getDuration() {
         return duration;
+    }
+
+    public Double getRate() {
+        return rate;
     }
 }
