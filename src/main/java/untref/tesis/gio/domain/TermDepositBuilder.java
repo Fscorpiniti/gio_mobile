@@ -1,6 +1,8 @@
 package untref.tesis.gio.domain;
 
 
+import com.google.common.base.Preconditions;
+
 import untref.tesis.gio.infrastructure.TermDepositStatus;
 
 public class TermDepositBuilder {
@@ -25,7 +27,16 @@ public class TermDepositBuilder {
     }
 
     public TermDeposit build() {
+        this.validate();
         return new TermDeposit(amount, rate, status);
+    }
+
+    private void validate() {
+        Preconditions.checkNotNull(amount, "Invalid amount");
+        Preconditions.checkNotNull(rate, "Invalid rate");
+        Preconditions.checkNotNull(status, "Invalid status");
+        Preconditions.checkArgument(amount < 0, "Invalid amount");
+        Preconditions.checkArgument(rate < 0, "Invalid rate");
     }
 
 }
