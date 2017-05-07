@@ -23,6 +23,6 @@ public class DefaultTermDepositRepository implements TermDepositRepository {
 
     @Override
     public Observable<TermDeposit> add(TermDepositData termDepositData) {
-        return Observable.empty();
+        return termDepositDataStore.add(termDepositData);
     }
 }

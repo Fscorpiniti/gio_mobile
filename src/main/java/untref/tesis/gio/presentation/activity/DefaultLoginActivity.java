@@ -1,7 +1,9 @@
 package untref.tesis.gio.presentation.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,7 +13,6 @@ import untref.tesis.gio.R;
 import untref.tesis.gio.presentation.domain.LoginPresenterFactory;
 import untref.tesis.gio.presentation.presenter.LoginPresenter;
 import untref.tesis.gio.domain.User;
-import untref.tesis.gio.presentation.exception.ValidationException;
 
 public class DefaultLoginActivity extends Activity implements LoginActivity {
 
@@ -41,8 +42,14 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
 
     @Override
     public void successful(User user) {
+        SharedPreferences sharedPref = getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("user_name", user.getName());
+        editor.putFloat("user_coins", user.getCoins().floatValue());
+        editor.putInt("user_id", user.getId());
+        editor.commit();
+
         Intent intent = new Intent(this, DefaultDashboardActivity.class);
-        intent.putExtra(USER_LOGGED, user.getEmail());
         startActivity(intent);
     }
 

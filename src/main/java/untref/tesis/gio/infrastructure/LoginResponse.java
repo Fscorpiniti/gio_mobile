@@ -13,6 +13,9 @@ public class LoginResponse {
     @SerializedName("name")
     private String name;
 
+    @SerializedName("user_economy")
+    private UserEconomyResponse userEconomyResponse;
+
     public LoginResponse() {}
 
     public LoginResponse(Integer id, String email, String name) {
@@ -31,5 +34,9 @@ public class LoginResponse {
 
     public String getName() {
         return name;
+    }
+
+    public UserEconomyResponse getUserEconomyResponse() {
+        return userEconomyResponse;
     }
 }

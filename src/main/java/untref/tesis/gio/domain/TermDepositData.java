@@ -1,11 +1,19 @@
 package untref.tesis.gio.domain;
 
 
+import com.google.gson.annotations.SerializedName;
+
 public class TermDepositData {
 
-    private Integer ownerId;
+    private transient Integer ownerId;
+
+    @SerializedName("amount")
     private Double amount;
+
+    @SerializedName("duration")
     private Integer duration;
+
+    @SerializedName("rate")
     private Double rate;
 
     public TermDepositData(Integer ownerId, Double amount, Integer duration, Double rate) {

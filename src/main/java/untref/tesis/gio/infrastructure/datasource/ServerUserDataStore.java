@@ -3,6 +3,7 @@ package untref.tesis.gio.infrastructure.datasource;
 import io.reactivex.Observable;
 import untref.tesis.gio.domain.CreateUserData;
 import untref.tesis.gio.domain.User;
+import untref.tesis.gio.domain.UserEconomy;
 import untref.tesis.gio.infrastructure.net.CreateUserApiService;
 
 public class ServerUserDataStore implements UserDataStore {
@@ -16,6 +17,6 @@ public class ServerUserDataStore implements UserDataStore {
     @Override
     public Observable<User> add(CreateUserData createUserData) {
         return this.createUserApiService.create(createUserData).map(data -> new User(data.getId(),
-                data.getEmail(), data.getName()));
+                data.getEmail(), data.getName(), new UserEconomy(data.getUserEconomyResponse().getCoins())));
     }
 }

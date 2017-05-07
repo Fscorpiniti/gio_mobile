@@ -13,6 +13,9 @@ public class CreateUserResponse {
     @SerializedName("name")
     private String name;
 
+    @SerializedName("user_economy")
+    private UserEconomyResponse userEconomyResponse;
+
     public Integer getId() {
         return id;
     }
@@ -23,5 +26,9 @@ public class CreateUserResponse {
 
     public String getName() {
         return name;
+    }
+
+    public UserEconomyResponse getUserEconomyResponse() {
+        return userEconomyResponse;
     }
 }
