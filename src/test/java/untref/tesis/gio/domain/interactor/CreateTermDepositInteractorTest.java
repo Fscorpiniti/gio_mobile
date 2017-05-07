@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 import io.reactivex.Observable;
+import io.reactivex.Scheduler;
 import io.reactivex.observers.TestObserver;
 import io.reactivex.schedulers.Schedulers;
 import untref.tesis.gio.domain.CreateTermDepositRequest;
@@ -23,26 +24,32 @@ public class CreateTermDepositInteractorTest {
 
     private static final int DEFAULT_OWNER_ID = 1;
     private static final int DEFAULT_DURATION = 30;
-    private static final int DEFAULT_AMOUNT = 100;
+    private static final Double DEFAULT_AMOUNT = new Double(100);
+    private static final int NUMBER_THREADS = 1;
+
+    private CreateTermDepositRequest createTermDepositRequest;
 
     @Test
     public void whenCreateTermDepositThenTermDepositIsCreated() {
-        Integer ownerId = DEFAULT_OWNER_ID;
-        Double amount = new Double(DEFAULT_AMOUNT);
-        Integer duration = DEFAULT_DURATION;
-        CreateTermDepositRequest request = new CreateTermDepositRequest(ownerId, amount, duration);
-        TermDepositData data = new TermDepositDataFactory().build(request);
+        buildCreateTermDepositRequest(DEFAULT_OWNER_ID, DEFAULT_AMOUNT, DEFAULT_DURATION);
+        TermDepositData data = new TermDepositDataFactory().build(createTermDepositRequest);
         TermDeposit termDeposit = Mockito.mock(TermDeposit.class);
-
         TermDepositRepository termDepositRepository = Mockito.mock(TermDepositRepository.class);
         Mockito.when(termDepositRepository.add(data)).thenReturn(Observable.just(termDeposit));
-        CreateTermDepositInteractor createTermDepositInteractor = new
-                DefaultCreateTermDepositInteractor(termDepositRepository, Schedulers.from(Executors.newFixedThreadPool(1)),
-                Schedulers.from(Executors.newFixedThreadPool(1)));
-        Observable<TermDeposit> result = createTermDepositInteractor.execute(request);
-        TestObserver<TermDeposit> testObserver = result.test();
+
+        Observable<TermDeposit> termDepositObservable = new DefaultCreateTermDepositInteractor(termDepositRepository,
+                getDefaultScheduler(), getDefaultScheduler()).execute(createTermDepositRequest);
+        TestObserver<TermDeposit> testObserver = termDepositObservable.test();
 
         testObserver.assertNoErrors().assertValue(termDepositValue -> termDeposit.equals(termDepositValue));
+    }
+
+    private Scheduler getDefaultScheduler() {
+        return Schedulers.from(Executors.newFixedThreadPool(NUMBER_THREADS));
+    }
+
+    private void buildCreateTermDepositRequest(Integer ownerId, Double amount, Integer duration) {
+        createTermDepositRequest = new CreateTermDepositRequest(ownerId, amount, duration);
     }
 
 }
