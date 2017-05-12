@@ -1,6 +1,8 @@
 package untref.tesis.gio.infrastructure.datasource;
 
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import untref.tesis.gio.domain.entity.TermDeposit;
 import untref.tesis.gio.domain.data.TermDepositData;
@@ -12,4 +14,5 @@ public interface TermDepositDataStore {
 
     Observable<TermDeposit> add(TermDepositData termDepositData);
 
+    Observable<List<TermDeposit>> findByOwner(Integer ownerId);
 }

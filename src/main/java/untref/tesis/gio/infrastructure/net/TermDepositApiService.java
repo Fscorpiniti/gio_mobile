@@ -8,6 +8,7 @@ import retrofit2.http.Path;
 import untref.tesis.gio.domain.data.TermDepositData;
 import untref.tesis.gio.infrastructure.response.TermDepositInformationResponse;
 import untref.tesis.gio.infrastructure.response.TermDepositResponse;
+import untref.tesis.gio.infrastructure.response.TermDepositResponses;
 
 public interface TermDepositApiService {
 
@@ -18,4 +19,6 @@ public interface TermDepositApiService {
     Observable<TermDepositResponse> add(@Path("owner_id") Integer ownerId, @Body TermDepositData
             termDepositData);
 
+    @GET("users/{owner_id}/deposits")
+    Observable<TermDepositResponses> findByOwner(@Path("owner_id") Integer ownerId);
 }

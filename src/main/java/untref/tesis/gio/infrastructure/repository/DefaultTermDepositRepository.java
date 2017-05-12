@@ -1,5 +1,7 @@
 package untref.tesis.gio.infrastructure.repository;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import untref.tesis.gio.domain.entity.TermDeposit;
 import untref.tesis.gio.domain.data.TermDepositData;
@@ -24,5 +26,10 @@ public class DefaultTermDepositRepository implements TermDepositRepository {
     @Override
     public Observable<TermDeposit> add(TermDepositData termDepositData) {
         return termDepositDataStore.add(termDepositData);
+    }
+
+    @Override
+    public Observable<List<TermDeposit>> findByOwner(Integer ownerId) {
+        return termDepositDataStore.findByOwner(ownerId);
     }
 }

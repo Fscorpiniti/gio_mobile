@@ -1,6 +1,9 @@
 package untref.tesis.gio.infrastructure.datasource;
 
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import io.reactivex.Observable;
 import untref.tesis.gio.domain.entity.TermDeposit;
 import untref.tesis.gio.domain.factory.TermDepositBuilder;
@@ -10,6 +13,7 @@ import untref.tesis.gio.domain.factory.TermDepositInformationFactory;
 import untref.tesis.gio.infrastructure.response.TermDepositInformationResponse;
 import untref.tesis.gio.infrastructure.response.TermDepositResponse;
 import untref.tesis.gio.infrastructure.net.TermDepositApiService;
+import untref.tesis.gio.infrastructure.response.TermDepositResponses;
 
 public class ServerTermDepositDataStore implements TermDepositDataStore {
 
@@ -31,11 +35,24 @@ public class ServerTermDepositDataStore implements TermDepositDataStore {
                 buildTermDeposit(termDepositResponse));
 }
 
+    @Override
+    public Observable<List<TermDeposit>> findByOwner(Integer ownerId) {
+        return termDepositApiService.findByOwner(ownerId).map(termDepositResponses ->
+                buildTermDepositList(termDepositResponses));
+    }
+
+    private List<TermDeposit> buildTermDepositList(TermDepositResponses termDepositResponses) {
+        return termDepositResponses.getTermDepositResponses().stream()
+                .map(termDepositResponse -> buildTermDeposit(termDepositResponse))
+                .collect(Collectors.toList());
+    }
+
     private TermDeposit buildTermDeposit(TermDepositResponse termDepositResponse) {
         return new TermDepositBuilder()
                 .withAmount(termDepositResponse.getAmount())
                 .withRate(termDepositResponse.getRate())
                 .withStatus(termDepositResponse.getStatus())
+                .withExpiration(termDepositResponse.getExpiration())
                 .build();
     }
 
