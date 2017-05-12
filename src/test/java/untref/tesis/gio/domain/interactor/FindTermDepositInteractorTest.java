@@ -1,8 +1,13 @@
 package untref.tesis.gio.domain.interactor;
 
 
+import android.support.annotation.NonNull;
+
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,15 +26,20 @@ public class FindTermDepositInteractorTest {
     private static final int NUMBER_THREADS = 1;
     private static final int OWNER_ID = 1;
 
+    @Mock
+    private TermDepositRepository termDepositRepository;
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+    }
+
     @Test
     public void whenFindTermDepositsWithoutTermDepositsThenReturnEmptyList() {
-        TermDepositRepository termDepositRepository = Mockito.mock(TermDepositRepository.class);
         List<TermDeposit> emptyList = new ArrayList<>();
         Mockito.when(termDepositRepository.findByOwner(OWNER_ID)).thenReturn(Observable.just(emptyList));
-        FindTermDepositInteractor findTermDepositInteractor = new
-            DefaultFindTermDepositInteractor(termDepositRepository, getDefaultScheduler(), getDefaultScheduler());
 
-        Observable<List<TermDeposit>> termDeposits = findTermDepositInteractor.findByOwner(OWNER_ID);
+        Observable<List<TermDeposit>> termDeposits = buildFindTermDepositInteractor().findByOwner(OWNER_ID);
 
         TestObserver<List<TermDeposit>> testObserver = termDeposits.test();
         testObserver.assertNoErrors().assertValue(list -> list.isEmpty());
@@ -37,17 +47,18 @@ public class FindTermDepositInteractorTest {
 
     @Test
     public void whenFindTermDepositsWithTermDepositsThenReturnCompleteList() {
-        TermDepositRepository termDepositRepository = Mockito.mock(TermDepositRepository.class);
         TermDeposit termDeposit = Mockito.mock(TermDeposit.class);
         List<TermDeposit> emptyList = Arrays.asList(termDeposit);
         Mockito.when(termDepositRepository.findByOwner(OWNER_ID)).thenReturn(Observable.just(emptyList));
-        FindTermDepositInteractor findTermDepositInteractor = new
-                DefaultFindTermDepositInteractor(termDepositRepository, getDefaultScheduler(), getDefaultScheduler());
 
-        Observable<List<TermDeposit>> termDeposits = findTermDepositInteractor.findByOwner(OWNER_ID);
+        Observable<List<TermDeposit>> termDeposits = buildFindTermDepositInteractor().findByOwner(OWNER_ID);
 
         TestObserver<List<TermDeposit>> testObserver = termDeposits.test();
         testObserver.assertNoErrors().assertValue(list -> list.size() == 1);
+    }
+
+    private FindTermDepositInteractor buildFindTermDepositInteractor() {
+        return new DefaultFindTermDepositInteractor(termDepositRepository, getDefaultScheduler(), getDefaultScheduler());
     }
 
     private Scheduler getDefaultScheduler() {
