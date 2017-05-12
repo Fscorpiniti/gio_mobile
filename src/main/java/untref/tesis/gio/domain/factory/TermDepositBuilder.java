@@ -45,8 +45,8 @@ public class TermDepositBuilder {
         Preconditions.checkNotNull(rate, "Invalid rate");
         Preconditions.checkNotNull(status, "Invalid status");
         Preconditions.checkNotNull(expiration, "Invalid expiration");
-        Preconditions.checkArgument(amount < 0, "Invalid amount");
-        Preconditions.checkArgument(rate < 0, "Invalid rate");
+        Preconditions.checkArgument(amount >= 0, "Invalid amount");
+        Preconditions.checkArgument(rate >= 0, "Invalid rate");
     }
 
 }
