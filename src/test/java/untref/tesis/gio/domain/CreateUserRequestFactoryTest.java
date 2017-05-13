@@ -18,7 +18,9 @@ public class CreateUserRequestFactoryTest {
     private static final String VALID_PASSWORD = "pass";
     private static final String VALID_EMAIL = "test@test.com";
     private static final int NUMBER_OF_INVOCATIONS = 1;
-    public static final String VALID_NAME = "test";
+    private static final String VALID_NAME = "test";
+
+    private CreateUserRequest createUserRequest;
 
     @Test
     public void whenCreateUserRequestThenInvokeEmailChecker() throws ValidationException {
@@ -26,8 +28,7 @@ public class CreateUserRequestFactoryTest {
         PasswordChecker passwordChecker = Mockito.mock(PasswordChecker.class);
         NameChecker nameChecker = Mockito.mock(NameChecker.class);
 
-        new CreateUserRequestFactory(emailChecker, passwordChecker, nameChecker).build(VALID_EMAIL,
-                VALID_PASSWORD, VALID_NAME);
+        buildCreateUserRequest(emailChecker, passwordChecker, nameChecker);
 
         Mockito.verify(emailChecker, Mockito.times(NUMBER_OF_INVOCATIONS)).check(VALID_EMAIL);
     }
@@ -38,8 +39,7 @@ public class CreateUserRequestFactoryTest {
         PasswordChecker passwordChecker = Mockito.mock(PasswordChecker.class);
         NameChecker nameChecker = Mockito.mock(NameChecker.class);
 
-        new CreateUserRequestFactory(emailChecker, passwordChecker, nameChecker).build(VALID_EMAIL,
-                VALID_PASSWORD, VALID_NAME);
+        buildCreateUserRequest(emailChecker, passwordChecker, nameChecker);
 
         Mockito.verify(passwordChecker, Mockito.times(NUMBER_OF_INVOCATIONS)).check(VALID_PASSWORD);
     }
@@ -50,8 +50,7 @@ public class CreateUserRequestFactoryTest {
         PasswordChecker passwordChecker = Mockito.mock(PasswordChecker.class);
         NameChecker nameChecker = Mockito.mock(NameChecker.class);
 
-        new CreateUserRequestFactory(emailChecker, passwordChecker, nameChecker).build(VALID_EMAIL,
-                VALID_PASSWORD, VALID_NAME);
+        buildCreateUserRequest(emailChecker, passwordChecker, nameChecker);
 
         Mockito.verify(nameChecker, Mockito.times(NUMBER_OF_INVOCATIONS)).check(VALID_NAME);
     }
@@ -62,11 +61,17 @@ public class CreateUserRequestFactoryTest {
         PasswordChecker passwordChecker = Mockito.mock(PasswordChecker.class);
         NameChecker nameChecker = Mockito.mock(NameChecker.class);
 
-        CreateUserRequest createUserRequest = new CreateUserRequestFactory(emailChecker, passwordChecker, nameChecker)
-                .build(VALID_EMAIL, VALID_PASSWORD, VALID_NAME);
+        buildCreateUserRequest(emailChecker, passwordChecker, nameChecker);
 
         Assert.assertEquals(VALID_EMAIL, createUserRequest.getEmail());
         Assert.assertEquals(VALID_NAME, createUserRequest.getName());
         Assert.assertEquals(VALID_PASSWORD, createUserRequest.getPassword());
+    }
+
+    private void buildCreateUserRequest(EmailChecker emailChecker, PasswordChecker passwordChecker, NameChecker nameChecker)
+            throws ValidationException {
+
+        createUserRequest = new CreateUserRequestFactory(emailChecker, passwordChecker, nameChecker)
+                .build(VALID_EMAIL, VALID_PASSWORD, VALID_NAME);
     }
 }

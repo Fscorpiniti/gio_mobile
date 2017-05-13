@@ -18,12 +18,14 @@ public class LoginRequestFactoryTest {
     private static final String VALID_EMAIL = "test@test.com";
     private static final int NUMBER_OF_INVOCATIONS = 1;
 
+    private LoginRequest loginRequest;
+
     @Test
     public void whenCreateLoginRequestThenInvokeEmailChecker() throws ValidationException {
         EmailChecker emailChecker = Mockito.mock(EmailChecker.class);
         PasswordChecker passwordChecker = Mockito.mock(PasswordChecker.class);
 
-        new LoginRequestFactory(emailChecker, passwordChecker).build(VALID_EMAIL, VALID_PASSWORD);
+        whenBuildLoginRequest(emailChecker, passwordChecker);
 
         Mockito.verify(emailChecker, Mockito.times(NUMBER_OF_INVOCATIONS)).check(VALID_EMAIL);
     }
@@ -33,7 +35,7 @@ public class LoginRequestFactoryTest {
         EmailChecker emailChecker = Mockito.mock(EmailChecker.class);
         PasswordChecker passwordChecker = Mockito.mock(PasswordChecker.class);
 
-        new LoginRequestFactory(emailChecker, passwordChecker).build(VALID_EMAIL, VALID_PASSWORD);
+        whenBuildLoginRequest(emailChecker, passwordChecker);
 
         Mockito.verify(passwordChecker, Mockito.times(NUMBER_OF_INVOCATIONS)).check(VALID_PASSWORD);
     }
@@ -43,11 +45,14 @@ public class LoginRequestFactoryTest {
         EmailChecker emailChecker = Mockito.mock(EmailChecker.class);
         PasswordChecker passwordChecker = Mockito.mock(PasswordChecker.class);
 
-        LoginRequest loginRequest = new LoginRequestFactory(emailChecker, passwordChecker)
-                .build(VALID_EMAIL, VALID_PASSWORD);
+        whenBuildLoginRequest(emailChecker, passwordChecker);
 
         Assert.assertEquals(VALID_EMAIL, loginRequest.getEmail());
         Assert.assertEquals(VALID_PASSWORD, loginRequest.getPassword());
+    }
+
+    private void whenBuildLoginRequest(EmailChecker emailChecker, PasswordChecker passwordChecker) throws ValidationException {
+        loginRequest = new LoginRequestFactory(emailChecker, passwordChecker).build(VALID_EMAIL, VALID_PASSWORD);
     }
 
 }
