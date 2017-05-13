@@ -54,7 +54,7 @@
         android:layout_below="@id/create_user_text_view_password"
         android:layout_marginBottom="20dp"
         android:maxLines="1"
-        android:inputType="text" />
+        android:inputType="textPassword" />
 
     <Button android:id="@+id/btn_login"
         android:layout_width="wrap_content"
