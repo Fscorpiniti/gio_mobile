@@ -24,8 +24,13 @@ public class DefaultLoginPresenter implements LoginPresenter {
 
         if (loginRequestOptional.isPresent()) {
             this.loginInteractor.login(loginRequestOptional.get())
-                    .subscribe(user -> loginActivity.successful(user));
+                    .subscribe(user -> loginActivity.successful(user),
+                                exception -> handleError(exception));
         }
+    }
+
+    private void handleError(Throwable ex) {
+        this.loginActivity.notifyError("Email o password incorrecto.");
     }
 
     private Optional<LoginRequest> buildLoginRequest(String email, String password) {

@@ -15,7 +15,7 @@ public class EmailValidator {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email);
 
         if (!matcher.find()) {
-            throw new ValidationException("Email is invalid");
+            throw new ValidationException("El email es invalido");
         }
     }
 

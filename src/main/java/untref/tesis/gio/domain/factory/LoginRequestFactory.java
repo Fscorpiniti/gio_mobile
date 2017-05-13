@@ -16,13 +16,13 @@ public class LoginRequestFactory {
 
     private static void checkPassword(String password) throws ValidationException {
         if (StringUtils.isBlank(password)) {
-            throw new ValidationException("Password is required");
+            throw new ValidationException("El password es obligatorio");
         }
     }
 
     private static void checkEmail(String email) throws ValidationException {
         if (StringUtils.isBlank(email)) {
-            throw new ValidationException("Email is required");
+            throw new ValidationException("El email es obligatorio");
         }
 
         new EmailValidator().validate(email);
