@@ -1,7 +1,10 @@
 package untref.tesis.gio.presentation.presenter;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
+
 import java.util.Optional;
 
+import okhttp3.ResponseBody;
 import untref.tesis.gio.domain.validator.EmailValidator;
 import untref.tesis.gio.presentation.activity.CreateUserActivity;
 import untref.tesis.gio.domain.request.CreateUserRequest;
@@ -9,6 +12,7 @@ import untref.tesis.gio.domain.interactor.CreateUserInteractor;
 import untref.tesis.gio.presentation.checker.EmailChecker;
 import untref.tesis.gio.presentation.checker.NameChecker;
 import untref.tesis.gio.presentation.checker.PasswordChecker;
+import untref.tesis.gio.presentation.domain.BodyParser;
 import untref.tesis.gio.presentation.domain.CreateUserRequestFactory;
 import untref.tesis.gio.presentation.exception.ValidationException;
 
@@ -27,7 +31,16 @@ public class DefaultCreateUserPresenter implements CreateUserPresenter {
         Optional<CreateUserRequest> createUserRequestOptional = buildCreateUserRequest(email, password, name);
 
         if (createUserRequestOptional.isPresent()) {
-            createUserInteractor.create(createUserRequestOptional.get()).subscribe(user -> createUserActivity.successful(user));
+            createUserInteractor.create(createUserRequestOptional.get())
+                    .subscribe(user -> createUserActivity.successful(user),
+                               exception -> handleException(exception));
+        }
+    }
+
+    private void handleException(Throwable exception) {
+        if (exception instanceof HttpException) {
+            ResponseBody body = ((HttpException) exception).response().errorBody();
+            this.createUserActivity.notifyError(new BodyParser(body).getMessage());
         }
     }
 
