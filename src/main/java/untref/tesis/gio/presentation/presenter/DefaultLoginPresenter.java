@@ -2,9 +2,12 @@ package untref.tesis.gio.presentation.presenter;
 
 import java.util.Optional;
 
+import untref.tesis.gio.domain.validator.EmailValidator;
 import untref.tesis.gio.presentation.activity.LoginActivity;
 import untref.tesis.gio.domain.request.LoginRequest;
 import untref.tesis.gio.domain.factory.LoginRequestFactory;
+import untref.tesis.gio.presentation.checker.EmailChecker;
+import untref.tesis.gio.presentation.checker.PasswordChecker;
 import untref.tesis.gio.presentation.exception.ValidationException;
 import untref.tesis.gio.domain.interactor.LoginInteractor;
 
@@ -35,11 +38,19 @@ public class DefaultLoginPresenter implements LoginPresenter {
 
     private Optional<LoginRequest> buildLoginRequest(String email, String password) {
         try {
-            return Optional.of(LoginRequestFactory.build(email, password));
+            return Optional.of(buildLoginRequestFactory().build(email, password));
         } catch (ValidationException e) {
             this.loginActivity.notifyError(e.getMessage());
             return Optional.empty();
         }
+    }
+
+    private LoginRequestFactory buildLoginRequestFactory() {
+        return new LoginRequestFactory(buildEmailChecker(), new PasswordChecker());
+    }
+
+    private EmailChecker buildEmailChecker() {
+        return new EmailChecker(new EmailValidator());
     }
 
 }

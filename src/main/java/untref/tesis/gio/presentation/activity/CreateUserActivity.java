@@ -6,4 +6,5 @@ public interface CreateUserActivity {
 
     void successful(User user);
 
+    void notifyError(String message);
 }

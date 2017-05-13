@@ -1,4 +1,4 @@
-package untref.tesis.gio.domain;
+package untref.tesis.gio.domain.checker;
 
 
 import org.junit.Test;

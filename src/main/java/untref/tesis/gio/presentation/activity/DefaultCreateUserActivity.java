@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import untref.tesis.gio.R;
 import untref.tesis.gio.presentation.domain.CreateUserPresenterFactory;
@@ -37,6 +38,11 @@ public class DefaultCreateUserActivity extends Activity implements CreateUserAct
     public void successful(User user) {
         Intent intent = new Intent(this, DefaultLoginActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void notifyError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 }
