@@ -22,9 +22,9 @@ public class CreateUserRequestFactory {
 
     public CreateUserRequest build(String email, String password, String name)
             throws ValidationException {
+        nameChecker.check(name);
         emailChecker.check(email);
         passwordChecker.check(password);
-        nameChecker.check(name);
         return new CreateUserRequest(email, password, name);
     }
 
