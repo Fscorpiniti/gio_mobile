@@ -60,6 +60,11 @@ public class DefaultCreateTermDepositActivity extends Activity implements Create
         startActivity(intent);
     }
 
+    @Override
+    public void notifyError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     public void create(View view) {
         EditText editAmount = (EditText) findViewById(R.id.amout_term_deposit_edit);
         TextView textRateValue = (TextView) findViewById(R.id.rate_value_term_deposit_text_view);

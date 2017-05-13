@@ -24,7 +24,7 @@ public class DefaultCreateTermDepositPresenter implements CreateTermDepositPrese
     public void findRateForDuration(Integer duration) {
         findRateInteractor.execute().subscribe(termDepositInformation -> createTermDepositActivity
                 .refreshByChangeRate(termDepositInformation.findRateByDuration(duration),
-                        termDepositInformation.findAmountOfMonths(duration)));
+                        termDepositInformation.findAmountOfMonths(duration)), exception -> handleError(exception));
     }
 
     @Override
@@ -35,6 +35,10 @@ public class DefaultCreateTermDepositPresenter implements CreateTermDepositPrese
 
     private CreateTermDepositRequest buildCreateTermDepositRequest(Integer ownerId, Double amount, Double rate, Integer duration) {
         return new CreateTermDepositRequest(ownerId, amount, duration, rate);
+    }
+
+    private void handleError(Throwable exception) {
+        createTermDepositActivity.notifyError("El servidor no esta disponible.");
     }
 
 }
