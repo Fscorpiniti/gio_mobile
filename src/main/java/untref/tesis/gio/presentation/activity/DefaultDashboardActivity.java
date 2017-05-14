@@ -48,8 +48,14 @@ public class DefaultDashboardActivity extends AppCompatActivity implements Dashb
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (isCreateTermDepositAction(item)) {
+        if (isAction(item, R.id.create_term_deposit)) {
             Intent intent = new Intent(this, DefaultCreateTermDepositActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (isAction(item, R.id.logout)) {
+            Intent intent = new Intent(this, DefaultLoginActivity.class);
             startActivity(intent);
             return true;
         }
@@ -75,8 +81,8 @@ public class DefaultDashboardActivity extends AppCompatActivity implements Dashb
                 .append(" con vencimiento en ").append(termDeposit.getExpiration()).toString();
     }
 
-    private boolean isCreateTermDepositAction(MenuItem item) {
-        return item.getItemId() == R.id.create_term_deposit;
+    private boolean isAction(MenuItem item, int actionId) {
+        return item.getItemId() == actionId;
     }
 
 }

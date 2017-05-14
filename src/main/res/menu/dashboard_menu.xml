@@ -7,4 +7,5 @@
                 android:title="@string/create_term_deposit" />
         </menu>
     </item>
+    <item android:id="@+id/logout" android:title="@string/logout" />
 </menu>

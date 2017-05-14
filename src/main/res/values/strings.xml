@@ -13,6 +13,7 @@
     <string name="duration">Duracion</string>
     <string name="rate">Tasa</string>
     <string name="interest">Interes</string>
+    <string name="logout">Salir</string>
 
     <string-array name="duration_term_deposit_entries">
         <item>30</item>
