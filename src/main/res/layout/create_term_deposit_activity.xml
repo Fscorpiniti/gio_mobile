@@ -18,7 +18,8 @@
         android:layout_below="@id/amount_term_deposit_text_view"
         android:layout_marginBottom="20dp"
         android:maxLines="1"
-        android:inputType="text" />
+        android:inputType="text"
+        android:maxLength="6"/>
 
     <TextView android:id="@+id/duration_term_deposit_text_view"
         android:layout_width="wrap_content"

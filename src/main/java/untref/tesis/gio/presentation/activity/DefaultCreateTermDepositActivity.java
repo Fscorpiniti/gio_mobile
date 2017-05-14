@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -25,6 +28,7 @@ public class DefaultCreateTermDepositActivity extends Activity implements Create
 
     private static final String PERCENTAGE = "%";
     private static final Integer DEFAULT_USER_ID = 0;
+    private static final String DEFAULT_NUMBER_VALUE = "0";
     private CreateTermDepositPresenter createTermDepositPresenter;
 
     @Override
@@ -33,6 +37,7 @@ public class DefaultCreateTermDepositActivity extends Activity implements Create
         setContentView(R.layout.create_term_deposit_activity);
         Spinner spinner = findDurationSpinner();
         spinner.setOnItemSelectedListener(this);
+        addListenerToAmountEditText();
         this.createTermDepositPresenter = CreateTermDepositPresenterFactory.build(this);
     }
 
@@ -71,7 +76,7 @@ public class DefaultCreateTermDepositActivity extends Activity implements Create
         Spinner spinner = findDurationSpinner();
         String durationSelected = (String) spinner.getSelectedItem();
 
-        Double amount = Double.valueOf(editAmount.getText().toString());
+        Double amount = Double.valueOf(getValidAmount(editAmount));
         Double rate = Double.valueOf(getRateValue(textRateValue));
         Integer duration = Integer.valueOf(durationSelected);
 
@@ -81,8 +86,20 @@ public class DefaultCreateTermDepositActivity extends Activity implements Create
         this.createTermDepositPresenter.create(ownerId, amount, rate, duration);
     }
 
+    private String getValidAmount(EditText editAmount) {
+        String amountText = editAmount.getText().toString();
+        if (StringUtils.isBlank(amountText)) {
+            return DEFAULT_NUMBER_VALUE;
+        }
+        return amountText;
+    }
+
     private String getRateValue(TextView textRateValue) {
-        return textRateValue.getText().toString().substring(0, textRateValue.getText().length() - 1);
+        String rateText = textRateValue.getText().toString();
+        if(StringUtils.isBlank(rateText)) {
+            return DEFAULT_NUMBER_VALUE;
+        }
+        return rateText.substring(0, textRateValue.getText().length() - 1);
     }
 
     private Spinner findDurationSpinner() {
@@ -96,6 +113,8 @@ public class DefaultCreateTermDepositActivity extends Activity implements Create
         if (StringUtils.isNotBlank(amount)) {
             refreshComponent(R.id.interest_value_term_deposit_text_view,
                     String.valueOf(calculateInterest(rate, durationInMonths, amount)));
+        } else {
+            refreshComponent(R.id.interest_value_term_deposit_text_view, DEFAULT_NUMBER_VALUE);
         }
     }
 
@@ -103,8 +122,8 @@ public class DefaultCreateTermDepositActivity extends Activity implements Create
         return new InterestCalculator().calculate(Double.valueOf(amount), rate, durationInMonths);
     }
 
-    private void refreshComponent(int rate_value_term_deposit_text_view, String text) {
-        TextView rateTextView = (TextView) findViewById(rate_value_term_deposit_text_view);
+    private void refreshComponent(int componentId, String text) {
+        TextView rateTextView = (TextView) findViewById(componentId);
         rateTextView.setText(text);
     }
 
@@ -116,4 +135,21 @@ public class DefaultCreateTermDepositActivity extends Activity implements Create
         return new StringBuilder("Creacion exitosa de plazo fijo por: ").append(termDeposit.getAmount()).toString();
     }
 
+    private void addListenerToAmountEditText() {
+        EditText editText = (EditText) findViewById(R.id.amout_term_deposit_edit);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Spinner spinner = findDurationSpinner();
+                onItemSelected(spinner, editText.getRootView(), spinner.getSelectedItemPosition(),
+                        spinner.getId());
+            }
+        });
+    }
 }
