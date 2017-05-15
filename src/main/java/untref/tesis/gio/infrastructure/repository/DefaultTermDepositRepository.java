@@ -24,12 +24,12 @@ public class DefaultTermDepositRepository implements TermDepositRepository {
     }
 
     @Override
-    public Observable<TermDeposit> add(TermDepositData termDepositData) {
-        return termDepositDataStore.add(termDepositData);
+    public Observable<TermDeposit> add(TermDepositData termDepositData, String authToken) {
+        return termDepositDataStore.add(termDepositData, authToken);
     }
 
     @Override
-    public Observable<List<TermDeposit>> findByOwner(Integer ownerId) {
-        return termDepositDataStore.findByOwner(ownerId);
+    public Observable<List<TermDeposit>> findByOwner(Integer ownerId, String authToken) {
+        return termDepositDataStore.findByOwner(ownerId, authToken);
     }
 }

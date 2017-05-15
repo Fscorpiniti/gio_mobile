@@ -7,6 +7,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import untref.tesis.gio.domain.data.LoginData;
+import untref.tesis.gio.domain.entity.UserLogged;
 import untref.tesis.gio.domain.repository.LoginRepository;
 import untref.tesis.gio.domain.request.LoginRequest;
 import untref.tesis.gio.domain.entity.User;
@@ -22,7 +23,7 @@ public class DefaultLoginInteractor implements LoginInteractor {
     }
 
     @Override
-    public Observable<User> login(LoginRequest loginRequest) {
+    public Observable<UserLogged> login(LoginRequest loginRequest) {
         return loginRepository.login(buildLoginData(loginRequest)).subscribeOn(Schedulers.from(executor))
                 .observeOn(AndroidSchedulers.mainThread());
     }

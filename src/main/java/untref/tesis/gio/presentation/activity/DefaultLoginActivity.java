@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import untref.tesis.gio.R;
+import untref.tesis.gio.domain.entity.UserLogged;
 import untref.tesis.gio.presentation.domain.LoginPresenterFactory;
 import untref.tesis.gio.presentation.presenter.LoginPresenter;
 import untref.tesis.gio.domain.entity.User;
@@ -41,12 +42,13 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
     }
 
     @Override
-    public void successful(User user) {
+    public void successful(UserLogged userLogged) {
         SharedPreferences sharedPref = getSharedPreferences("user", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("user_name", user.getName());
-        editor.putFloat("user_coins", user.getCoins().floatValue());
-        editor.putInt("user_id", user.getId());
+        editor.putString("user_name", userLogged.getUser().getName());
+        editor.putString("auth_token", userLogged.getToken());
+        editor.putFloat("user_coins", userLogged.getUser().getCoins().floatValue());
+        editor.putInt("user_id", userLogged.getUser().getId());
         editor.commit();
 
         Intent intent = new Intent(this, DefaultDashboardActivity.class);

@@ -29,6 +29,7 @@ public class DefaultCreateTermDepositActivity extends Activity implements Create
     private static final String PERCENTAGE = "%";
     private static final Integer DEFAULT_USER_ID = 0;
     private static final String DEFAULT_NUMBER_VALUE = "0";
+    private static final String DEFAULT_TOKEN = "0";
     private CreateTermDepositPresenter createTermDepositPresenter;
 
     @Override
@@ -82,8 +83,9 @@ public class DefaultCreateTermDepositActivity extends Activity implements Create
 
         SharedPreferences sharedPref = getSharedPreferences("user", Context.MODE_PRIVATE);
         Integer ownerId = sharedPref.getInt("user_id", DEFAULT_USER_ID);
+        String authToken = sharedPref.getString("auth_token", DEFAULT_TOKEN);
 
-        this.createTermDepositPresenter.create(ownerId, amount, rate, duration);
+        this.createTermDepositPresenter.create(ownerId, amount, rate, duration, authToken);
     }
 
     private String getValidAmount(EditText editAmount) {

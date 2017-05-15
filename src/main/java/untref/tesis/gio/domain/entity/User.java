@@ -33,4 +33,5 @@ public class User {
     public Double getCoins() {
         return userEconomy.getCoins();
     }
+
 }

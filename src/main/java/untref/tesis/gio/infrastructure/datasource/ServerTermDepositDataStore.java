@@ -30,14 +30,14 @@ public class ServerTermDepositDataStore implements TermDepositDataStore {
     }
 
     @Override
-    public Observable<TermDeposit> add(TermDepositData termDepositData) {
-        return termDepositApiService.add(termDepositData.getOwnerId(), termDepositData).map(termDepositResponse ->
+    public Observable<TermDeposit> add(TermDepositData termDepositData, String authToken) {
+        return termDepositApiService.add(termDepositData.getOwnerId(), termDepositData, authToken).map(termDepositResponse ->
                 buildTermDeposit(termDepositResponse));
 }
 
     @Override
-    public Observable<List<TermDeposit>> findByOwner(Integer ownerId) {
-        return termDepositApiService.findByOwner(ownerId).map(termDepositResponses ->
+    public Observable<List<TermDeposit>> findByOwner(Integer ownerId, String authToken) {
+        return termDepositApiService.findByOwner(ownerId, authToken).map(termDepositResponses ->
                 buildTermDepositList(termDepositResponses));
     }
 

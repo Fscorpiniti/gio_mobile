@@ -23,8 +23,8 @@ public class DefaultFindTermDepositInteractor implements FindTermDepositInteract
     }
 
     @Override
-    public Observable<List<TermDeposit>> findByOwner(Integer ownerId) {
-        return termDepositRepository.findByOwner(ownerId)
+    public Observable<List<TermDeposit>> findByOwner(Integer ownerId, String authToken) {
+        return termDepositRepository.findByOwner(ownerId, authToken)
                 .subscribeOn(schedulerSubscribeOn)
                 .observeOn(schedulerObserveOn);
     }

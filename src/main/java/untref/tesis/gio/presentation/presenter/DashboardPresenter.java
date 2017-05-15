@@ -2,6 +2,6 @@ package untref.tesis.gio.presentation.presenter;
 
 public interface DashboardPresenter {
 
-    void findByOwner(Integer ownerId);
+    void findByOwner(Integer ownerId, String authToken);
 
 }

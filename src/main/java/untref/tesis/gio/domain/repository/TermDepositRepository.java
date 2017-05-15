@@ -11,7 +11,7 @@ public interface TermDepositRepository {
 
     Observable<TermDepositInformation> findTermDepositInformationForCreation();
 
-    Observable<TermDeposit> add(TermDepositData termDepositData);
+    Observable<TermDeposit> add(TermDepositData termDepositData, String authToken);
 
-    Observable<List<TermDeposit>> findByOwner(Integer ownerId);
+    Observable<List<TermDeposit>> findByOwner(Integer ownerId, String authToken);
 }

@@ -3,6 +3,7 @@ package untref.tesis.gio.infrastructure.net;
 import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import untref.tesis.gio.domain.data.TermDepositData;
@@ -17,8 +18,9 @@ public interface TermDepositApiService {
 
     @POST("users/{owner_id}/deposits")
     Observable<TermDepositResponse> add(@Path("owner_id") Integer ownerId, @Body TermDepositData
-            termDepositData);
+            termDepositData, @Header("auth_token") String authToken);
 
     @GET("users/{owner_id}/deposits")
-    Observable<TermDepositResponses> findByOwner(@Path("owner_id") Integer ownerId);
+    Observable<TermDepositResponses> findByOwner(@Path("owner_id") Integer ownerId,
+                                                 @Header("auth_token") String authToken);
 }

@@ -2,8 +2,8 @@ package untref.tesis.gio.infrastructure.repository;
 
 import io.reactivex.Observable;
 import untref.tesis.gio.domain.data.LoginData;
+import untref.tesis.gio.domain.entity.UserLogged;
 import untref.tesis.gio.domain.repository.LoginRepository;
-import untref.tesis.gio.domain.entity.User;
 import untref.tesis.gio.infrastructure.datasource.LoginDataStore;
 
 public class DefaultLoginRepository implements LoginRepository {
@@ -15,7 +15,7 @@ public class DefaultLoginRepository implements LoginRepository {
     }
 
     @Override
-    public Observable<User> login(LoginData loginData) {
+    public Observable<UserLogged> login(LoginData loginData) {
         return loginDataStore.login(loginData);
     }
 

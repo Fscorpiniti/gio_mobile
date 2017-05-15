@@ -36,12 +36,12 @@ public class DefaultCreateTermDepositPresenter implements CreateTermDepositPrese
     }
 
     @Override
-    public void create(Integer ownerId, Double amount, Double rate, Integer duration) {
+    public void create(Integer ownerId, Double amount, Double rate, Integer duration, String authToken) {
         Optional<CreateTermDepositRequest> createTermDepositRequestOptional = buildCreateTermDepositRequest(ownerId,
                 amount, rate, duration);
 
         if (createTermDepositRequestOptional.isPresent()) {
-            createTermDepositInteractor.execute(createTermDepositRequestOptional.get())
+            createTermDepositInteractor.execute(createTermDepositRequestOptional.get(), authToken)
                     .subscribe(termDeposit -> this.createTermDepositActivity.sucessfulCreationTermDeposit(termDeposit),
                             exception -> handleException(exception));
         }

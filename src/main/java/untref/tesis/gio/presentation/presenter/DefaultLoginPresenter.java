@@ -27,7 +27,7 @@ public class DefaultLoginPresenter implements LoginPresenter {
 
         if (loginRequestOptional.isPresent()) {
             this.loginInteractor.login(loginRequestOptional.get())
-                    .subscribe(user -> loginActivity.successful(user),
+                    .subscribe(userLogged -> loginActivity.successful(userLogged),
                                 exception -> handleError(exception));
         }
     }

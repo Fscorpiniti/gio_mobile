@@ -32,10 +32,10 @@ public class CreateTermDepositInteractorTest {
         TermDepositData data = new TermDepositDataFactory().build(createTermDepositRequest);
         TermDeposit termDeposit = Mockito.mock(TermDeposit.class);
         TermDepositRepository termDepositRepository = Mockito.mock(TermDepositRepository.class);
-        Mockito.when(termDepositRepository.add(data)).thenReturn(Observable.just(termDeposit));
+        Mockito.when(termDepositRepository.add(data, authToken)).thenReturn(Observable.just(termDeposit));
 
         Observable<TermDeposit> termDepositObservable = new DefaultCreateTermDepositInteractor(termDepositRepository,
-                getDefaultScheduler(), getDefaultScheduler()).execute(createTermDepositRequest);
+                getDefaultScheduler(), getDefaultScheduler()).execute(createTermDepositRequest, authToken);
         TestObserver<TermDeposit> testObserver = termDepositObservable.test();
 
         testObserver.assertNoErrors().assertValue(termDepositValue -> termDeposit.equals(termDepositValue));

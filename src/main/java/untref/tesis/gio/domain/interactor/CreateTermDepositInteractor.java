@@ -6,6 +6,6 @@ import untref.tesis.gio.domain.entity.TermDeposit;
 
 public interface CreateTermDepositInteractor {
 
-    Observable<TermDeposit> execute(CreateTermDepositRequest request);
+    Observable<TermDeposit> execute(CreateTermDepositRequest request, String authToken);
 
 }

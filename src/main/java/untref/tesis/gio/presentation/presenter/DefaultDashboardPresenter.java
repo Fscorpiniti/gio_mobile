@@ -15,8 +15,8 @@ public class DefaultDashboardPresenter implements DashboardPresenter {
     }
 
     @Override
-    public void findByOwner(Integer ownerId) {
-        findTermDepositInteractor.findByOwner(ownerId).subscribe(termDeposits ->
+    public void findByOwner(Integer ownerId, String authToken) {
+        findTermDepositInteractor.findByOwner(ownerId, authToken).subscribe(termDeposits ->
                 this.dashboardActivity.completeTermDepositList(termDeposits));
     }
 }

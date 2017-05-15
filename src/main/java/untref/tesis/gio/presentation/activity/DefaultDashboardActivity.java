@@ -22,6 +22,7 @@ import untref.tesis.gio.presentation.presenter.DashboardPresenter;
 public class DefaultDashboardActivity extends AppCompatActivity implements DashboardActivity {
 
     private static final Integer DEFAULT_USER_ID = 0;
+    private static final String DEFAULT_TOKEN = "0";
     private DashboardPresenter dashboardPresenter;
 
     @Override
@@ -35,8 +36,9 @@ public class DefaultDashboardActivity extends AppCompatActivity implements Dashb
     private void findTermDepositsByOwner() {
         SharedPreferences sharedPref = getSharedPreferences("user", Context.MODE_PRIVATE);
         Integer ownerId = sharedPref.getInt("user_id", DEFAULT_USER_ID);
+        String authToken = sharedPref.getString("auth_token", DEFAULT_TOKEN);
 
-        dashboardPresenter.findByOwner(ownerId);
+        dashboardPresenter.findByOwner(ownerId, authToken);
     }
 
     @Override

@@ -3,7 +3,7 @@ package untref.tesis.gio.presentation.activity;
 
 import android.view.View;
 
-import untref.tesis.gio.domain.entity.User;
+import untref.tesis.gio.domain.entity.UserLogged;
 
 public interface LoginActivity {
 
@@ -11,7 +11,7 @@ public interface LoginActivity {
 
     void login(View view);
 
-    void successful(User user);
+    void successful(UserLogged userLogged);
 
     void notifyError(String message);
 

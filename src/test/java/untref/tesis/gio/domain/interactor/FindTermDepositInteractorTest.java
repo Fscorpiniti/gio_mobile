@@ -1,8 +1,6 @@
 package untref.tesis.gio.domain.interactor;
 
 
-import android.support.annotation.NonNull;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -37,9 +35,9 @@ public class FindTermDepositInteractorTest {
     @Test
     public void whenFindTermDepositsWithoutTermDepositsThenReturnEmptyList() {
         List<TermDeposit> emptyList = new ArrayList<>();
-        Mockito.when(termDepositRepository.findByOwner(OWNER_ID)).thenReturn(Observable.just(emptyList));
+        Mockito.when(termDepositRepository.findByOwner(OWNER_ID, authToken)).thenReturn(Observable.just(emptyList));
 
-        Observable<List<TermDeposit>> termDeposits = buildFindTermDepositInteractor().findByOwner(OWNER_ID);
+        Observable<List<TermDeposit>> termDeposits = buildFindTermDepositInteractor().findByOwner(OWNER_ID, authToken);
 
         TestObserver<List<TermDeposit>> testObserver = termDeposits.test();
         testObserver.assertNoErrors().assertValue(list -> list.isEmpty());
@@ -49,9 +47,9 @@ public class FindTermDepositInteractorTest {
     public void whenFindTermDepositsWithTermDepositsThenReturnCompleteList() {
         TermDeposit termDeposit = Mockito.mock(TermDeposit.class);
         List<TermDeposit> emptyList = Arrays.asList(termDeposit);
-        Mockito.when(termDepositRepository.findByOwner(OWNER_ID)).thenReturn(Observable.just(emptyList));
+        Mockito.when(termDepositRepository.findByOwner(OWNER_ID, authToken)).thenReturn(Observable.just(emptyList));
 
-        Observable<List<TermDeposit>> termDeposits = buildFindTermDepositInteractor().findByOwner(OWNER_ID);
+        Observable<List<TermDeposit>> termDeposits = buildFindTermDepositInteractor().findByOwner(OWNER_ID, authToken);
 
         TestObserver<List<TermDeposit>> testObserver = termDeposits.test();
         testObserver.assertNoErrors().assertValue(list -> list.size() == 1);

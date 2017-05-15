@@ -22,8 +22,8 @@ public class DefaultCreateTermDepositInteractor implements CreateTermDepositInte
     }
 
     @Override
-    public Observable<TermDeposit> execute(CreateTermDepositRequest request) {
-        return termDepositRepository.add(new TermDepositDataFactory().build(request))
+    public Observable<TermDeposit> execute(CreateTermDepositRequest request, String authToken) {
+        return termDepositRepository.add(new TermDepositDataFactory().build(request), authToken)
                 .subscribeOn(schedulerSubscribeOn)
                 .observeOn(schedulerObserveOn);
     }
