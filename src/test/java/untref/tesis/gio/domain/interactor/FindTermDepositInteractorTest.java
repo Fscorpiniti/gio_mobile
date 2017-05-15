@@ -41,7 +41,7 @@ public class FindTermDepositInteractorTest {
         Observable<List<TermDeposit>> termDeposits = buildFindTermDepositInteractor().findByOwner(OWNER_ID, authToken);
 
         TestObserver<List<TermDeposit>> testObserver = termDeposits.test();
-        testObserver.assertNoErrors().assertValue(list -> list.isEmpty());
+        testObserver.assertNoErrors().assertNoValues();
     }
 
     @Test
