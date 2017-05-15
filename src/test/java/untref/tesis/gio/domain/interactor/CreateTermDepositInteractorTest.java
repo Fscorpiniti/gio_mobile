@@ -23,6 +23,7 @@ public class CreateTermDepositInteractorTest {
     private static final Double DEFAULT_AMOUNT = new Double(100);
     private static final Double DEFAULT_RATE = new Double(15);
     private static final int NUMBER_THREADS = 1;
+    private static final String authToken = "test";
 
     private CreateTermDepositRequest createTermDepositRequest;
 

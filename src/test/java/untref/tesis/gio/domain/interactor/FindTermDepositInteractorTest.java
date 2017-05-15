@@ -23,6 +23,7 @@ public class FindTermDepositInteractorTest {
 
     private static final int NUMBER_THREADS = 1;
     private static final int OWNER_ID = 1;
+    private static final String authToken = "test";
 
     @Mock
     private TermDepositRepository termDepositRepository;
