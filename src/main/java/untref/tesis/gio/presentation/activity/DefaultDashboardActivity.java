@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -23,6 +24,10 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
 
     private static final Integer DEFAULT_USER_ID = 0;
     private static final String DEFAULT_TOKEN = "0";
+    private static final Float DEFAULT_COINS = new Float(0);
+    private static final String CANTIDAD_DE_MONEDAS_PARA_INVERTIR = "Cantidad de monedas para invertir: ";
+    private static final String USER_COINS = "user_coins";
+    private static final String USER = "user";
     private DashboardPresenter dashboardPresenter;
 
     @Override
@@ -30,6 +35,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         super.onCreate(bundle);
         setContentView(R.layout.dashboard_activity);
         createListOfTermDeposits();
+        updateUserCoins();
         dashboardPresenter = DashboardPresenterFactory.build(this);
         findTermDepositsByOwner();
     }
@@ -86,6 +92,13 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+    }
+
+    private void updateUserCoins() {
+        SharedPreferences sharedPref = getSharedPreferences(USER, Context.MODE_PRIVATE);
+        Float coins = sharedPref.getFloat(USER_COINS, DEFAULT_COINS);
+        TextView coinsTextView = (TextView) findViewById(R.id.coins_text_input);
+        coinsTextView.setText(CANTIDAD_DE_MONEDAS_PARA_INVERTIR + coins);
     }
 
 }
