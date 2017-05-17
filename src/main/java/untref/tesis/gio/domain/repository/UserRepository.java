@@ -8,5 +8,6 @@ public interface UserRepository {
 
     Observable<User> add(CreateUserData createUserData);
 
+    Observable<User> findById(Integer ownerId, String authToken);
 }
 

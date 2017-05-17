@@ -8,4 +8,5 @@ public interface UserDataStore {
 
     Observable<User> add(CreateUserData createUserData);
 
+    Observable<User> findById(Integer ownerId, String authToken);
 }

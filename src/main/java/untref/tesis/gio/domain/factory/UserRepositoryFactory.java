@@ -5,7 +5,7 @@ import untref.tesis.gio.infrastructure.repository.DefaultUserRepository;
 import untref.tesis.gio.infrastructure.datasource.ServerUserDataStore;
 import untref.tesis.gio.infrastructure.datasource.UserDataStore;
 import untref.tesis.gio.infrastructure.net.ApiService;
-import untref.tesis.gio.infrastructure.net.CreateUserApiService;
+import untref.tesis.gio.infrastructure.net.UserApiService;
 
 public class UserRepositoryFactory {
 
@@ -14,7 +14,7 @@ public class UserRepositoryFactory {
     }
 
     private static UserDataStore buildUserDataStore() {
-        return new ServerUserDataStore(ApiService.retrofit.create(CreateUserApiService.class));
+        return new ServerUserDataStore(ApiService.retrofit.create(UserApiService.class));
     }
 
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -24,10 +25,10 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
 
     private static final Integer DEFAULT_USER_ID = 0;
     private static final String DEFAULT_TOKEN = "0";
-    private static final Float DEFAULT_COINS = new Float(0);
     private static final String CANTIDAD_DE_MONEDAS_PARA_INVERTIR = "Cantidad de monedas para invertir: ";
-    private static final String USER_COINS = "user_coins";
     private static final String USER = "user";
+    private static final String USER_ID = "user_id";
+    private static final String AUTH_TOKEN = "auth_token";
     private DashboardPresenter dashboardPresenter;
 
     @Override
@@ -35,8 +36,8 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         super.onCreate(bundle);
         setContentView(R.layout.dashboard_activity);
         createListOfTermDeposits();
-        updateUserCoins();
         dashboardPresenter = DashboardPresenterFactory.build(this);
+        findUserEconomy();
         findTermDepositsByOwner();
     }
 
@@ -71,6 +72,12 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    public void updateUserCoins(Double coins) {
+        TextView coinsTextView = (TextView) findViewById(R.id.coins_text_input);
+        coinsTextView.setText(CANTIDAD_DE_MONEDAS_PARA_INVERTIR + coins);
+    }
+
     private boolean isAction(MenuItem item, int actionId) {
         return item.getItemId() == actionId;
     }
@@ -80,11 +87,15 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     }
 
     private void findTermDepositsByOwner() {
-        SharedPreferences sharedPref = getSharedPreferences("user", Context.MODE_PRIVATE);
-        Integer ownerId = sharedPref.getInt("user_id", DEFAULT_USER_ID);
-        String authToken = sharedPref.getString("auth_token", DEFAULT_TOKEN);
+        SharedPreferences sharedPref = getSharedPreferences(USER, Context.MODE_PRIVATE);
+        Integer ownerId = getUserId(sharedPref);
+        String authToken = getAuthToken(sharedPref);
 
         dashboardPresenter.findByOwner(ownerId, authToken);
+    }
+
+    private String getAuthToken(SharedPreferences sharedPref) {
+        return sharedPref.getString(AUTH_TOKEN, DEFAULT_TOKEN);
     }
 
     private void createListOfTermDeposits() {
@@ -94,11 +105,15 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         recyclerView.setLayoutManager(layoutManager);
     }
 
-    private void updateUserCoins() {
+    private void findUserEconomy() {
         SharedPreferences sharedPref = getSharedPreferences(USER, Context.MODE_PRIVATE);
-        Float coins = sharedPref.getFloat(USER_COINS, DEFAULT_COINS);
-        TextView coinsTextView = (TextView) findViewById(R.id.coins_text_input);
-        coinsTextView.setText(CANTIDAD_DE_MONEDAS_PARA_INVERTIR + coins);
+        Integer ownerId = getUserId(sharedPref);
+        String authToken = getAuthToken(sharedPref);
+        dashboardPresenter.findEconomyUserLogged(ownerId, authToken);
+    }
+
+    private int getUserId(SharedPreferences sharedPref) {
+        return sharedPref.getInt(USER_ID, DEFAULT_USER_ID);
     }
 
 }

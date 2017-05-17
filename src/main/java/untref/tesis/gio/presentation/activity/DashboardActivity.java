@@ -8,4 +8,6 @@ public interface DashboardActivity {
 
     void completeTermDepositList(List<TermDeposit> termDeposits);
 
+    void updateUserCoins(Double coins);
+
 }

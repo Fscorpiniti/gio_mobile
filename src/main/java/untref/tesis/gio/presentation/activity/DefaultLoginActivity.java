@@ -17,6 +17,9 @@ import untref.tesis.gio.domain.entity.User;
 
 public class DefaultLoginActivity extends Activity implements LoginActivity {
 
+    private static final String USER_NAME = "user_name";
+    private static final String AUTH_TOKEN = "auth_token";
+    private static final String USER_ID = "user_id";
     private LoginPresenter loginPresenter;
 
     @Override
@@ -45,10 +48,9 @@ public class DefaultLoginActivity extends Activity implements LoginActivity {
     public void successful(UserLogged userLogged) {
         SharedPreferences sharedPref = getSharedPreferences("user", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("user_name", userLogged.getUser().getName());
-        editor.putString("auth_token", userLogged.getToken());
-        editor.putFloat("user_coins", userLogged.getUser().getCoins().floatValue());
-        editor.putInt("user_id", userLogged.getUser().getId());
+        editor.putString(USER_NAME, userLogged.getUser().getName());
+        editor.putString(AUTH_TOKEN, userLogged.getToken());
+        editor.putInt(USER_ID, userLogged.getUser().getId());
         editor.commit();
 
         Intent intent = new Intent(this, DefaultDashboardActivity.class);

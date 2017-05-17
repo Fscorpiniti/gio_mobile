@@ -2,7 +2,7 @@ package untref.tesis.gio.infrastructure.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CreateUserResponse {
+public class UserResponse {
 
     @SerializedName("id")
     private Integer id;

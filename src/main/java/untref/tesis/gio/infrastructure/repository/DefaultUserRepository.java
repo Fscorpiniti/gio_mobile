@@ -19,4 +19,9 @@ public class DefaultUserRepository implements UserRepository {
     public Observable<User> add(CreateUserData createUserData) {
         return userDataStore.add(createUserData);
     }
+
+    @Override
+    public Observable<User> findById(Integer ownerId, String authToken) {
+        return userDataStore.findById(ownerId, authToken);
+    }
 }
