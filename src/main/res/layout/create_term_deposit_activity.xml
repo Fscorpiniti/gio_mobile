@@ -8,7 +8,9 @@
         android:layout_height="wrap_content"
         android:text="@string/amount"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <EditText android:id="@+id/amout_term_deposit_edit"
         android:layout_width="wrap_content"
@@ -19,7 +21,9 @@
         android:layout_marginBottom="20dp"
         android:maxLines="1"
         android:inputType="text"
-        android:maxLength="6"/>
+        android:maxLength="6"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <TextView android:id="@+id/duration_term_deposit_text_view"
         android:layout_width="wrap_content"
@@ -27,7 +31,9 @@
         android:text="@string/duration"
         android:layout_below="@id/amout_term_deposit_edit"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <Spinner
         android:id="@+id/spinner_term_deposit_duration"
@@ -44,14 +50,18 @@
         android:text="@string/rate"
         android:layout_below="@id/spinner_term_deposit_duration"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <TextView android:id="@+id/rate_value_term_deposit_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rate_term_deposit_text_view"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <TextView android:id="@+id/interest_term_deposit_text_view"
         android:layout_width="wrap_content"
@@ -59,14 +69,18 @@
         android:text="@string/interest"
         android:layout_below="@id/rate_value_term_deposit_text_view"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <TextView android:id="@+id/interest_value_term_deposit_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/interest_term_deposit_text_view"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <Button android:id="@+id/btn_create_term_deposit"
         android:layout_width="wrap_content"

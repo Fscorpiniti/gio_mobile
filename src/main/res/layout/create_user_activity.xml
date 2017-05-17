@@ -8,7 +8,9 @@
         android:layout_height="wrap_content"
         android:text="@string/edit_name"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <EditText android:id="@+id/create_user_edit_name"
         android:layout_width="wrap_content"
@@ -18,7 +20,9 @@
         android:layout_below="@id/create_user_text_view_name"
         android:layout_marginBottom="20dp"
         android:maxLines="1"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <TextView android:id="@+id/create_user_text_view_email"
         android:layout_width="wrap_content"
@@ -26,7 +30,9 @@
         android:text="@string/edit_email"
         android:layout_below="@id/create_user_edit_name"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <EditText android:id="@+id/create_user_edit_email"
         android:layout_width="wrap_content"
@@ -36,7 +42,9 @@
         android:layout_below="@id/create_user_text_view_email"
         android:layout_marginBottom="20dp"
         android:maxLines="1"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <TextView android:id="@+id/create_user_text_view_password"
         android:layout_width="wrap_content"
@@ -44,7 +52,9 @@
         android:text="@string/edit_password"
         android:layout_below="@id/create_user_edit_email"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <EditText android:id="@+id/create_user_edit_password"
         android:layout_width="wrap_content"
@@ -54,7 +64,9 @@
         android:layout_below="@id/create_user_text_view_password"
         android:layout_marginBottom="20dp"
         android:maxLines="1"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
     <Button android:id="@+id/btn_login"
         android:layout_width="wrap_content"
