@@ -3,6 +3,7 @@ package untref.tesis.gio.presentation.presenter;
 import untref.tesis.gio.domain.interactor.FindTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.FindUserInteractor;
 import untref.tesis.gio.domain.interactor.ForceTermDepositInteractor;
+import untref.tesis.gio.domain.interactor.GetAllInvestmentInteractor;
 import untref.tesis.gio.presentation.activity.DashboardActivity;
 
 public class DefaultDashboardPresenter implements DashboardPresenter {
@@ -11,14 +12,16 @@ public class DefaultDashboardPresenter implements DashboardPresenter {
     private FindTermDepositInteractor findTermDepositInteractor;
     private FindUserInteractor findUserInteractor;
     private ForceTermDepositInteractor forceTermDepositInteractor;
+    private GetAllInvestmentInteractor getAllInvestmentInteractor;
 
-    public DefaultDashboardPresenter(DashboardActivity dashboardActivity, FindTermDepositInteractor
-            findTermDepositInteractor, FindUserInteractor findUserInteractor,
-                                     ForceTermDepositInteractor forceTermDepositInteractor) {
+    public DefaultDashboardPresenter(DashboardActivity dashboardActivity, FindTermDepositInteractor findTermDepositInteractor,
+                                     FindUserInteractor findUserInteractor, ForceTermDepositInteractor forceTermDepositInteractor,
+                                             GetAllInvestmentInteractor getAllInvestmentInteractor) {
         this.dashboardActivity = dashboardActivity;
         this.findTermDepositInteractor = findTermDepositInteractor;
         this.findUserInteractor = findUserInteractor;
         this.forceTermDepositInteractor = forceTermDepositInteractor;
+        this.getAllInvestmentInteractor = getAllInvestmentInteractor;
     }
 
     @Override
@@ -37,5 +40,11 @@ public class DefaultDashboardPresenter implements DashboardPresenter {
     public void forceTermDeposit(Integer ownerId, Integer termDepositId, String authToken) {
         forceTermDepositInteractor.force(ownerId, termDepositId, authToken).subscribe(termDeposit ->
                 this.dashboardActivity.sucessfulForce(termDeposit));
+    }
+
+    @Override
+    public void getAllInvestments() {
+        getAllInvestmentInteractor.execute().subscribe(investments ->
+            this.dashboardActivity.activeCasualInvestments(investments));
     }
 }

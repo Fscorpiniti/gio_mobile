@@ -7,4 +7,6 @@ public interface DashboardPresenter {
     void findEconomyUserLogged(Integer ownerId, String authToken);
 
     void forceTermDeposit(Integer ownerId, Integer termDepositId, String authToken);
+
+    void getAllInvestments();
 }

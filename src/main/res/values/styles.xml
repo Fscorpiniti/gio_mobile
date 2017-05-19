@@ -4,4 +4,10 @@
         <item name="android:colorPrimary">@color/colorPrimary</item>
     </style>
 
+    <style name="MyDialogTheme" parent="android:Theme.Material.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:windowBackground">@drawable/drawable</item>
+    </style>
+
 </resources>

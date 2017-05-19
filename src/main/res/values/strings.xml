@@ -16,6 +16,9 @@
     <string name="logout">Salir</string>
     <string name="title_dashboard_list">Plazos fijos activos</string>
     <string name="force">Acreditar</string>
+    <string name="investment_dialog_title">Evento de inversion</string>
+    <string name="investment_ok">Adquirir</string>
+    <string name="investment_cancel">Pasar</string>
 
     <string-array name="duration_term_deposit_entries">
         <item>30</item>
