@@ -137,17 +137,22 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     }
 
     private void showLocationDialog() {
+        IntStream random = new Random().ints(0, investments.size());
+        Investment selected = investments.get(random.findFirst().getAsInt());
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
         builder.setTitle(getString(R.string.investment_dialog_title));
-        builder.setMessage(buildMessageToDialog());
+        builder.setMessage(buildMessageToDialog(selected));
 
-        builder.setPositiveButton(R.string.investment_ok,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+        if (selected.hasAmount()) {
+            builder.setPositiveButton(R.string.investment_ok,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                });
+                        }
+                    });
+        }
 
         builder.setNegativeButton(R.string.investment_cancel,
                 new DialogInterface.OnClickListener() {
@@ -161,9 +166,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         dialog.show();
     }
 
-    private String buildMessageToDialog() {
-        IntStream random = new Random().ints(0, investments.size());
-        Investment selected = investments.get(random.findFirst().getAsInt());
+    private String buildMessageToDialog(Investment selected) {
         StringBuilder builder = new StringBuilder(selected.getText());
         if (selected.hasAmount()) {
             builder.append(" - Monto de inversion : ").append(selected.getAmount());
