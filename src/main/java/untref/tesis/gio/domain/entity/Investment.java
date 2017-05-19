@@ -56,7 +56,4 @@ public class Investment {
         return name;
     }
 
-    public boolean hasAmount() {
-        return getAmount() > 0;
-    }
 }

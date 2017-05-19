@@ -144,7 +144,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         builder.setTitle(getString(R.string.investment_dialog_title));
         builder.setMessage(buildMessageToDialog(selected));
 
-        if (selected.hasAmount()) {
+        if (selected.getPurchasable()) {
             builder.setPositiveButton(R.string.investment_ok,
                     new DialogInterface.OnClickListener() {
                         @Override
@@ -168,7 +168,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
 
     private String buildMessageToDialog(Investment selected) {
         StringBuilder builder = new StringBuilder(selected.getText());
-        if (selected.hasAmount()) {
+        if (selected.getPurchasable()) {
             builder.append(" - Monto de inversion : ").append(selected.getAmount());
         }
         return builder.toString();
