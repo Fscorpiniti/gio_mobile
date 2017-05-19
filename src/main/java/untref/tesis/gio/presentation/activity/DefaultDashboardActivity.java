@@ -43,6 +43,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     private TimerTask timerTask;
     private List<Investment> investments;
     private Handler handler = new Handler();
+    private Investment selected;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -115,6 +116,11 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         startTimer();
     }
 
+    @Override
+    public void updateInvestments(List<Investment> investments) {
+
+    }
+
     private void startTimer() {
         Timer timer = new Timer();
         initializeTimerTask();
@@ -138,7 +144,10 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
 
     private void showLocationDialog() {
         IntStream random = new Random().ints(0, investments.size());
-        Investment selected = investments.get(random.findFirst().getAsInt());
+        selected = investments.get(random.findFirst().getAsInt());
+        SharedPreferences sharedPref = getSharedPreferences(USER, Context.MODE_PRIVATE);
+        Integer ownerId = getUserId(sharedPref);
+        String authToken = getAuthToken(sharedPref);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
         builder.setTitle(getString(R.string.investment_dialog_title));
@@ -149,7 +158,8 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
+                            dashboardPresenter.createInvestment(ownerId, selected.getId(),
+                                    authToken);
                         }
                     });
         }
@@ -157,9 +167,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         builder.setNegativeButton(R.string.investment_cancel,
                 new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
+                    public void onClick(DialogInterface dialog, int which) {}
                 });
 
         AlertDialog dialog = builder.create();

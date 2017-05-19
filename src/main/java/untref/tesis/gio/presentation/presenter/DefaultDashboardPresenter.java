@@ -1,5 +1,6 @@
 package untref.tesis.gio.presentation.presenter;
 
+import untref.tesis.gio.domain.interactor.CreateInvestmentInteractor;
 import untref.tesis.gio.domain.interactor.FindTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.FindUserInteractor;
 import untref.tesis.gio.domain.interactor.ForceTermDepositInteractor;
@@ -13,15 +14,17 @@ public class DefaultDashboardPresenter implements DashboardPresenter {
     private FindUserInteractor findUserInteractor;
     private ForceTermDepositInteractor forceTermDepositInteractor;
     private GetAllInvestmentInteractor getAllInvestmentInteractor;
+    private CreateInvestmentInteractor createInvestmentInteractor;
 
     public DefaultDashboardPresenter(DashboardActivity dashboardActivity, FindTermDepositInteractor findTermDepositInteractor,
                                      FindUserInteractor findUserInteractor, ForceTermDepositInteractor forceTermDepositInteractor,
-                                             GetAllInvestmentInteractor getAllInvestmentInteractor) {
+                                     GetAllInvestmentInteractor getAllInvestmentInteractor, CreateInvestmentInteractor createInvestmentInteractor) {
         this.dashboardActivity = dashboardActivity;
         this.findTermDepositInteractor = findTermDepositInteractor;
         this.findUserInteractor = findUserInteractor;
         this.forceTermDepositInteractor = forceTermDepositInteractor;
         this.getAllInvestmentInteractor = getAllInvestmentInteractor;
+        this.createInvestmentInteractor = createInvestmentInteractor;
     }
 
     @Override
@@ -47,4 +50,11 @@ public class DefaultDashboardPresenter implements DashboardPresenter {
         getAllInvestmentInteractor.execute().subscribe(investments ->
             this.dashboardActivity.activeCasualInvestments(investments));
     }
+
+    @Override
+    public void createInvestment(Integer ownerId, Integer investmentId, String authToken) {
+        createInvestmentInteractor.execute(ownerId, investmentId, authToken).subscribe(investments ->
+                this.dashboardActivity.updateInvestments(investments));
+    }
+
 }

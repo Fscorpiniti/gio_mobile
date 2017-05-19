@@ -19,4 +19,9 @@ public class DefaultInvestmentRepository implements InvestmentRepository {
     public Observable<List<Investment>> getAll() {
         return investmentDataStore.getAll();
     }
+
+    @Override
+    public Observable<List<Investment>> add(Integer ownerId, Integer investmentId, String authToken) {
+        return investmentDataStore.add(ownerId, investmentId, authToken);
+    }
 }

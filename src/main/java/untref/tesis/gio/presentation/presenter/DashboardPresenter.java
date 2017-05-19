@@ -9,4 +9,6 @@ public interface DashboardPresenter {
     void forceTermDeposit(Integer ownerId, Integer termDepositId, String authToken);
 
     void getAllInvestments();
+
+    void createInvestment(Integer ownerId, Integer investmentId, String authToken);
 }

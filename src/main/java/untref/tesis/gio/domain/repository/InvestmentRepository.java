@@ -10,4 +10,5 @@ public interface InvestmentRepository {
 
     Observable<List<Investment>> getAll();
 
+    Observable<List<Investment>> add(Integer ownerId, Integer investmentId, String authToken);
 }

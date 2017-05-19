@@ -1,8 +1,10 @@
 package untref.tesis.gio.presentation.domain;
 
+import untref.tesis.gio.domain.factory.DefaultCreateInvestmentInteractorFactory;
 import untref.tesis.gio.domain.factory.DefaultGetAllInvestmentInteractorFactory;
 import untref.tesis.gio.domain.factory.FindTermDepositInteractorFactory;
 import untref.tesis.gio.domain.factory.ForceTermDepositInteractorFactory;
+import untref.tesis.gio.domain.interactor.CreateInvestmentInteractor;
 import untref.tesis.gio.domain.interactor.FindTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.FindUserInteractor;
 import untref.tesis.gio.domain.interactor.ForceTermDepositInteractor;
@@ -16,7 +18,12 @@ public class DashboardPresenterFactory {
 
     public static DashboardPresenter build(DashboardActivity dashboardActivity) {
         return new DefaultDashboardPresenter(dashboardActivity, buildFindTermDepositInteractor(),
-                buildFindUserInteractor(), buildForceTermDepositInteractor(), buildGetAllInvestmentInteractor());
+                buildFindUserInteractor(), buildForceTermDepositInteractor(), buildGetAllInvestmentInteractor(),
+                buildCreateInvestmentInteractor());
+    }
+
+    private static CreateInvestmentInteractor buildCreateInvestmentInteractor() {
+        return DefaultCreateInvestmentInteractorFactory.build();
     }
 
     private static GetAllInvestmentInteractor buildGetAllInvestmentInteractor() {

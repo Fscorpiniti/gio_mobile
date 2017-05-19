@@ -16,4 +16,6 @@ public interface DashboardActivity {
     void sucessfulForce(TermDeposit termDeposit);
 
     void activeCasualInvestments(List<Investment> investments);
+
+    void updateInvestments(List<Investment> investments);
 }
