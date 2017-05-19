@@ -5,13 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -68,7 +68,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     @Override
     public void completeTermDepositList(List<TermDeposit> termDeposits) {
         RecyclerView recyclerView = findRecyclerView();
-        RecyclerView.Adapter adapter = new ListTermDepositsAdapter(termDeposits);
+        RecyclerView.Adapter adapter = new ListTermDepositsAdapter(termDeposits, this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -76,6 +76,23 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     public void updateUserCoins(Double coins) {
         TextView coinsTextView = (TextView) findViewById(R.id.coins_text_input);
         coinsTextView.setText(CANTIDAD_DE_MONEDAS_PARA_INVERTIR + coins);
+    }
+
+    @Override
+    public void force(TermDeposit termDeposit) {
+        SharedPreferences sharedPref = getSharedPreferences(USER, Context.MODE_PRIVATE);
+        Integer ownerId = getUserId(sharedPref);
+        String authToken = getAuthToken(sharedPref);
+        Integer termDepositId = termDeposit.getId();
+        dashboardPresenter.forceTermDeposit(ownerId, termDepositId, authToken);
+    }
+
+    @Override
+    public void sucessfulForce(TermDeposit termDeposit) {
+        findTermDepositsByOwner();
+        findUserEconomy();
+        Toast.makeText(this, "Acreditacion exitosa por :" + termDeposit.calculateValueToBelieve(),
+                Toast.LENGTH_SHORT).show();
     }
 
     private boolean isAction(MenuItem item, int actionId) {

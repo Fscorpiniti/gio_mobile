@@ -10,4 +10,7 @@ public interface DashboardActivity {
 
     void updateUserCoins(Double coins);
 
+    void force(TermDeposit termDeposit);
+
+    void sucessfulForce(TermDeposit termDeposit);
 }

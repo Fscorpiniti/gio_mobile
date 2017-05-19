@@ -32,4 +32,9 @@ public class DefaultTermDepositRepository implements TermDepositRepository {
     public Observable<List<TermDeposit>> findByOwner(Integer ownerId, String authToken) {
         return termDepositDataStore.findByOwner(ownerId, authToken);
     }
+
+    @Override
+    public Observable<TermDeposit> force(Integer ownerId, Integer termDepositId, String authToken) {
+        return termDepositDataStore.force(ownerId, termDepositId, authToken);
+    }
 }

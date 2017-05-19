@@ -15,4 +15,6 @@ public interface TermDepositDataStore {
     Observable<TermDeposit> add(TermDepositData termDepositData, String authToken);
 
     Observable<List<TermDeposit>> findByOwner(Integer ownerId, String authToken);
+
+    Observable<TermDeposit> force(Integer ownerId, Integer termDepositId, String authToken);
 }

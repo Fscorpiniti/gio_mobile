@@ -4,13 +4,15 @@ import java.util.Date;
 
 public class TermDeposit {
 
+    private Integer id;
     private Double amount;
     private Double rate;
     private TermDepositStatus status;
     private Date expiration;
 
-    public TermDeposit(Double amount, Double rate, TermDepositStatus status,
+    public TermDeposit(Integer id, Double amount, Double rate, TermDepositStatus status,
                        Date expiration) {
+        this.id = id;
         this.amount = amount;
         this.rate = rate;
         this.status = status;
@@ -31,5 +33,17 @@ public class TermDeposit {
 
     public Date getExpiration() {
         return expiration;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Double calculateValueToBelieve() {
+        return getAmount() + calculateInterest();
+    }
+
+    private double calculateInterest() {
+        return getAmount() * getRate() / 100;
     }
 }

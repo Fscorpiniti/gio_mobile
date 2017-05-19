@@ -41,6 +41,12 @@ public class ServerTermDepositDataStore implements TermDepositDataStore {
                 buildTermDepositList(termDepositResponses));
     }
 
+    @Override
+    public Observable<TermDeposit> force(Integer ownerId, Integer termDepositId, String authToken) {
+        return termDepositApiService.force(ownerId, termDepositId, authToken).map(termDepositResponse ->
+                buildTermDeposit(termDepositResponse));
+    }
+
     private List<TermDeposit> buildTermDepositList(TermDepositResponses termDepositResponses) {
         return termDepositResponses.getTermDepositResponses().stream()
                 .map(termDepositResponse -> buildTermDeposit(termDepositResponse))
@@ -53,6 +59,7 @@ public class ServerTermDepositDataStore implements TermDepositDataStore {
                 .withRate(termDepositResponse.getRate())
                 .withStatus(termDepositResponse.getStatus())
                 .withExpiration(termDepositResponse.getExpiration())
+                .withId(termDepositResponse.getId())
                 .build();
     }
 

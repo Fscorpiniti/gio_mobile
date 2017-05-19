@@ -53,14 +53,26 @@ public class TermDepositBuilderTest {
                 .withExpiration(expiration).build();
     }
 
+    @Test(expected = NullPointerException.class)
+    public void whenCreateTermDepositWithoutIdThenExceptionIsThrown() {
+        Double amount = 100.0;
+        TermDepositStatus status = TermDepositStatus.ACTIVE;
+        Double rate = 15.0;
+        Integer id = null;
+        Date expiration = new DateTime().plusDays(VALID_DAYS).toDate();
+        new TermDepositBuilder().withAmount(amount).withStatus(status).withRate(rate)
+                .withExpiration(expiration).withId(id).build();
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void whenCreateTermDepositWithAmountLessThanZeroThenExceptionIsThrown() {
         Double amount = -1.0;
         TermDepositStatus status = TermDepositStatus.ACTIVE;
         Double rate = 15.0;
+        Integer id = 1;
         Date expiration = new DateTime().plusDays(VALID_DAYS).toDate();
         new TermDepositBuilder().withAmount(amount).withStatus(status).withRate(rate)
-                .withExpiration(expiration).build();
+                .withExpiration(expiration).withId(id).build();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -68,9 +80,10 @@ public class TermDepositBuilderTest {
         Double amount = 100.0;
         TermDepositStatus status = TermDepositStatus.ACTIVE;
         Double rate = -15.0;
+        Integer id = 1;
         Date expiration = new DateTime().plusDays(VALID_DAYS).toDate();
         new TermDepositBuilder().withAmount(amount).withStatus(status).withRate(rate)
-                .withExpiration(expiration).build();
+                .withExpiration(expiration).withId(id).build();
     }
 
 }
