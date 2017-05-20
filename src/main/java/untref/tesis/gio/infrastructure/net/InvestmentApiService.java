@@ -10,8 +10,8 @@ import untref.tesis.gio.infrastructure.response.InvestmentsResponse;
 
 public interface InvestmentApiService {
 
-    @GET("investments")
-    Observable<InvestmentsResponse> getAll();
+    @GET("users/{owner_id}/game/investments")
+    Observable<InvestmentsResponse> getAll(@Path("owner_id") Integer ownerId);
 
     @POST("users/{owner_id}/investments/{investment_id}/purchase")
     Observable<InvestmentsResponse> add(@Path("owner_id") Integer ownerId,

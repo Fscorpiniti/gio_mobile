@@ -19,8 +19,8 @@ public class ServerInvestmentDataStore implements InvestmentDataStore {
     }
 
     @Override
-    public Observable<List<Investment>> getAll() {
-        return investmentApiService.getAll().map(investmentsResponse -> buildInvestmentList(investmentsResponse));
+    public Observable<List<Investment>> getAll(Integer ownerId) {
+        return investmentApiService.getAll(ownerId).map(investmentsResponse -> buildInvestmentList(investmentsResponse));
     }
 
     @Override

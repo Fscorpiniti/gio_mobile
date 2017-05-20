@@ -7,6 +7,6 @@ import untref.tesis.gio.domain.entity.Investment;
 
 public interface GetAllInvestmentInteractor {
 
-    Observable<List<Investment>> execute();
+    Observable<List<Investment>> execute(Integer ownerId);
 
 }

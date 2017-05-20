@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -39,11 +40,13 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     private static final String AUTH_TOKEN = "auth_token";
     private static final int FIRST_THRESHOLD = 60000;
     private static final int REPEAT_VALUE = 60000;
+    public static final int RANDOM_NUMBER_ORIGIN = 0;
     private DashboardPresenter dashboardPresenter;
     private TimerTask timerTask;
     private List<Investment> investments;
     private Handler handler = new Handler();
     private Investment selected;
+    private Timer timer;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -118,13 +121,16 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
 
     @Override
     public void updateInvestments(List<Investment> investments) {
-
+        getAllInvestments();
+        
     }
 
     private void startTimer() {
-        Timer timer = new Timer();
-        initializeTimerTask();
-        timer.schedule(timerTask, FIRST_THRESHOLD, REPEAT_VALUE);
+        if (!Optional.of(timer).isPresent()) {
+            timer = new Timer();
+            initializeTimerTask();
+            timer.schedule(timerTask, FIRST_THRESHOLD, REPEAT_VALUE);
+        }
     }
 
     private void initializeTimerTask() {
@@ -143,7 +149,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     }
 
     private void showLocationDialog() {
-        IntStream random = new Random().ints(0, investments.size());
+        IntStream random = new Random().ints(RANDOM_NUMBER_ORIGIN, investments.size());
         selected = investments.get(random.findFirst().getAsInt());
         SharedPreferences sharedPref = getSharedPreferences(USER, Context.MODE_PRIVATE);
         Integer ownerId = getUserId(sharedPref);
@@ -221,7 +227,8 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     }
 
     private void getAllInvestments() {
-        this.dashboardPresenter.getAllInvestments();
+        SharedPreferences sharedPref = getSharedPreferences(USER, Context.MODE_PRIVATE);
+        this.dashboardPresenter.getAllInvestments(getUserId(sharedPref));
     }
 
 }

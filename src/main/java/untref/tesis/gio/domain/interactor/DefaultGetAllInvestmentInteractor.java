@@ -22,8 +22,8 @@ public class DefaultGetAllInvestmentInteractor implements GetAllInvestmentIntera
     }
 
     @Override
-    public Observable<List<Investment>> execute() {
-        return investmentRepository.getAll().subscribeOn(schedulerSubscribeOn)
+    public Observable<List<Investment>> execute(Integer ownerId) {
+        return investmentRepository.getAll(ownerId).subscribeOn(schedulerSubscribeOn)
                 .observeOn(schedulerObserveOn);
     }
 }

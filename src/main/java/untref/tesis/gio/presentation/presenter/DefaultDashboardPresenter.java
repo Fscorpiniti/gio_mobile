@@ -46,8 +46,8 @@ public class DefaultDashboardPresenter implements DashboardPresenter {
     }
 
     @Override
-    public void getAllInvestments() {
-        getAllInvestmentInteractor.execute().subscribe(investments ->
+    public void getAllInvestments(Integer ownerId) {
+        getAllInvestmentInteractor.execute(ownerId).subscribe(investments ->
             this.dashboardActivity.activeCasualInvestments(investments));
     }
 

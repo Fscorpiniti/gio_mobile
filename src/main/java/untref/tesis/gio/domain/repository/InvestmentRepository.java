@@ -8,7 +8,7 @@ import untref.tesis.gio.domain.entity.Investment;
 
 public interface InvestmentRepository {
 
-    Observable<List<Investment>> getAll();
+    Observable<List<Investment>> getAll(Integer ownerId);
 
     Observable<List<Investment>> add(Integer ownerId, Integer investmentId, String authToken);
 }
