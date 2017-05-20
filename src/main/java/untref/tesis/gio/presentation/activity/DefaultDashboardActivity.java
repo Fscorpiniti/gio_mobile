@@ -40,7 +40,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     private static final String AUTH_TOKEN = "auth_token";
     private static final int FIRST_THRESHOLD = 60000;
     private static final int REPEAT_VALUE = 60000;
-    public static final int RANDOM_NUMBER_ORIGIN = 0;
+    private static final int RANDOM_NUMBER_ORIGIN = 0;
     private DashboardPresenter dashboardPresenter;
     private TimerTask timerTask;
     private List<Investment> investments;
@@ -123,6 +123,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
 
     @Override
     public void updateInvestments(List<Investment> refreshInvestments) {
+        findUserEconomy();
         getAllInvestments();
         RecyclerView recyclerView = findRecyclerView(R.id.list_investments);
         RecyclerView.Adapter adapter = new ListInvestmentAdapter(refreshInvestments, this);
