@@ -45,7 +45,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     private TimerTask timerTask;
     private List<Investment> investments;
     private Handler handler = new Handler();
-    private Investment selected;
+    private AlertDialog dialog;
     private Timer timer;
 
     @Override
@@ -170,8 +170,10 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     }
 
     private void showLocationDialog() {
+        if(dialog != null && dialog.isShowing()) return;
+
         IntStream random = new Random().ints(RANDOM_NUMBER_ORIGIN, investments.size());
-        selected = investments.get(random.findFirst().getAsInt());
+        Investment selected = investments.get(random.findFirst().getAsInt());
         SharedPreferences sharedPref = getSharedPreferences(USER, Context.MODE_PRIVATE);
         Integer ownerId = getUserId(sharedPref);
         String authToken = getAuthToken(sharedPref);
@@ -187,6 +189,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
                         public void onClick(DialogInterface dialog, int which) {
                             dashboardPresenter.createInvestment(ownerId, selected.getId(),
                                     authToken);
+                            dialog.dismiss();
                         }
                     });
         } else {
@@ -196,10 +199,12 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         builder.setNegativeButton(R.string.investment_cancel,
                 new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {}
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
                 });
 
-        AlertDialog dialog = builder.create();
+        dialog = builder.create();
         dialog.show();
     }
 
