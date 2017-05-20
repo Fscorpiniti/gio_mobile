@@ -52,7 +52,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.dashboard_activity);
-        createListOfTermDeposits();
+        createListOfTermDeposits(R.id.list_term_depositsg);
         dashboardPresenter = DashboardPresenterFactory.build(this);
         findUserEconomy();
         findTermDepositsByOwner();
@@ -85,7 +85,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
 
     @Override
     public void completeTermDepositList(List<TermDeposit> termDeposits) {
-        RecyclerView recyclerView = findRecyclerView();
+        RecyclerView recyclerView = findRecyclerView(R.id.list_term_deposits);
         RecyclerView.Adapter adapter = new ListTermDepositsAdapter(termDeposits, this);
         recyclerView.setAdapter(adapter);
     }
@@ -122,7 +122,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     @Override
     public void updateInvestments(List<Investment> investments) {
         getAllInvestments();
-        
+
     }
 
     private void startTimer() {
@@ -192,8 +192,8 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         return item.getItemId() == actionId;
     }
 
-    private RecyclerView findRecyclerView() {
-        return (RecyclerView) findViewById(R.id.list_term_deposits);
+    private RecyclerView findRecyclerView(Integer id) {
+        return (RecyclerView) findViewById(id);
     }
 
     private void findTermDepositsByOwner() {
@@ -208,8 +208,8 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         return sharedPref.getString(AUTH_TOKEN, DEFAULT_TOKEN);
     }
 
-    private void createListOfTermDeposits() {
-        RecyclerView recyclerView = findRecyclerView();
+    private void createListOfTermDeposits(Integer id) {
+        RecyclerView recyclerView = findRecyclerView(id);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
