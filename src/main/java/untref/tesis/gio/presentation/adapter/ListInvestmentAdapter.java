@@ -34,7 +34,7 @@ public class ListInvestmentAdapter extends RecyclerView.Adapter<ListInvestmentAd
         Investment investment = investments.get(position);
 
         String title = new StringBuilder(investment.getName()).toString();
-        String subTitle = new StringBuilder("Monto por : ").append(investment.getAmount()).toString();
+        String subTitle = new StringBuilder("Monto de inversion : ").append(investment.getAmount()).toString();
         holder.title.setText(title);
         holder.subtitle.setText(subTitle);
         holder.force.setOnClickListener(new View.OnClickListener() {
