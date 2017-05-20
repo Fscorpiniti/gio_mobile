@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -109,7 +109,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     }
 
     @Override
-    public void sucessfulForce(TermDeposit termDeposit) {
+    public void sucessfulForceTermDeposit(TermDeposit termDeposit) {
         findTermDepositsByOwner();
         findUserEconomy();
         Toast.makeText(this, "Acreditacion exitosa por :" + termDeposit.calculateValueToBelieve(),
@@ -132,7 +132,18 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
 
     @Override
     public void force(Investment investment) {
+        SharedPreferences sharedPref = getSharedPreferences(USER, Context.MODE_PRIVATE);
+        Integer ownerId = getUserId(sharedPref);
+        String authToken = getAuthToken(sharedPref);
+        Integer invesmentId = investment.getId();
+        dashboardPresenter.forceInvestment(ownerId, invesmentId, authToken);
+    }
 
+    @Override
+    public void sucessFulForceInvestment(Double amount) {
+        findUserEconomy();
+        findInvestmentsByOwner();
+        Toast.makeText(this, "Acreditacion exitosa por :" + amount, Toast.LENGTH_SHORT).show();
     }
 
     private void startTimer() {

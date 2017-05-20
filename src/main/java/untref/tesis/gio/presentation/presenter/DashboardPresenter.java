@@ -13,4 +13,6 @@ public interface DashboardPresenter {
     void createInvestment(Integer ownerId, Integer investmentId, String authToken);
 
     void findInvestmentByOwner(Integer ownerId, String authToken);
+
+    void forceInvestment(Integer ownerId, Integer invesmentId, String authToken);
 }

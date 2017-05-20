@@ -3,6 +3,7 @@ package untref.tesis.gio.presentation.presenter;
 import untref.tesis.gio.domain.interactor.CreateInvestmentInteractor;
 import untref.tesis.gio.domain.interactor.FindTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.FindUserInteractor;
+import untref.tesis.gio.domain.interactor.ForceInvestmentInteractor;
 import untref.tesis.gio.domain.interactor.ForceTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.GetInvestmentInteractor;
 import untref.tesis.gio.presentation.activity.DashboardActivity;
@@ -15,16 +16,19 @@ public class DefaultDashboardPresenter implements DashboardPresenter {
     private ForceTermDepositInteractor forceTermDepositInteractor;
     private GetInvestmentInteractor getInvestmentInteractor;
     private CreateInvestmentInteractor createInvestmentInteractor;
+    private ForceInvestmentInteractor forceInvestmentInteractor;
 
     public DefaultDashboardPresenter(DashboardActivity dashboardActivity, FindTermDepositInteractor findTermDepositInteractor,
                                      FindUserInteractor findUserInteractor, ForceTermDepositInteractor forceTermDepositInteractor,
-                                     GetInvestmentInteractor getInvestmentInteractor, CreateInvestmentInteractor createInvestmentInteractor) {
+                                     GetInvestmentInteractor getInvestmentInteractor, CreateInvestmentInteractor createInvestmentInteractor,
+                                     ForceInvestmentInteractor forceInvestmentInteractor) {
         this.dashboardActivity = dashboardActivity;
         this.findTermDepositInteractor = findTermDepositInteractor;
         this.findUserInteractor = findUserInteractor;
         this.forceTermDepositInteractor = forceTermDepositInteractor;
         this.getInvestmentInteractor = getInvestmentInteractor;
         this.createInvestmentInteractor = createInvestmentInteractor;
+        this.forceInvestmentInteractor = forceInvestmentInteractor;
     }
 
     @Override
@@ -42,7 +46,7 @@ public class DefaultDashboardPresenter implements DashboardPresenter {
     @Override
     public void forceTermDeposit(Integer ownerId, Integer termDepositId, String authToken) {
         forceTermDepositInteractor.force(ownerId, termDepositId, authToken).subscribe(termDeposit ->
-                this.dashboardActivity.sucessfulForce(termDeposit));
+                this.dashboardActivity.sucessfulForceTermDeposit(termDeposit));
     }
 
     @Override
@@ -61,6 +65,12 @@ public class DefaultDashboardPresenter implements DashboardPresenter {
     public void findInvestmentByOwner(Integer ownerId, String authToken) {
         getInvestmentInteractor.findByOwnerId(ownerId, authToken).subscribe(investments ->
                 this.dashboardActivity.updateInvestments(investments));
+    }
+
+    @Override
+    public void forceInvestment(Integer ownerId, Integer invesmentId, String authToken) {
+        forceInvestmentInteractor.execute(ownerId, invesmentId, authToken).subscribe(amount ->
+                this.dashboardActivity.sucessFulForceInvestment(amount));
     }
 
 }

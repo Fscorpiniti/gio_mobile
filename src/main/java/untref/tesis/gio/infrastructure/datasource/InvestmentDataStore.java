@@ -12,4 +12,6 @@ public interface InvestmentDataStore {
     Observable<List<Investment>> add(Integer ownerId, Integer investmentId, String authToken);
 
     Observable<List<Investment>> findByOwnerId(Integer ownerId, String authToken);
+
+    Observable<Double> force(Integer ownerId, Integer invesmentId, String authToken);
 }

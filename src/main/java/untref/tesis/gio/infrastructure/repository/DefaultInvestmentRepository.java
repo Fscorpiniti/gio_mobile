@@ -29,4 +29,9 @@ public class DefaultInvestmentRepository implements InvestmentRepository {
     public Observable<List<Investment>> findByOwnerId(Integer ownerId, String authToken) {
         return investmentDataStore.findByOwnerId(ownerId, authToken);
     }
+
+    @Override
+    public Observable<Double> force(Integer ownerId, Integer invesmentId, String authToken) {
+        return investmentDataStore.force(ownerId, invesmentId, authToken);
+    }
 }

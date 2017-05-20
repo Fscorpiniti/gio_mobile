@@ -1,12 +1,14 @@
 package untref.tesis.gio.presentation.domain;
 
 import untref.tesis.gio.domain.factory.DefaultCreateInvestmentInteractorFactory;
+import untref.tesis.gio.domain.factory.DefaultForceInvestmentIntectorFactory;
 import untref.tesis.gio.domain.factory.DefaultGetAllInvestmentInteractorFactory;
 import untref.tesis.gio.domain.factory.FindTermDepositInteractorFactory;
 import untref.tesis.gio.domain.factory.ForceTermDepositInteractorFactory;
 import untref.tesis.gio.domain.interactor.CreateInvestmentInteractor;
 import untref.tesis.gio.domain.interactor.FindTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.FindUserInteractor;
+import untref.tesis.gio.domain.interactor.ForceInvestmentInteractor;
 import untref.tesis.gio.domain.interactor.ForceTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.GetInvestmentInteractor;
 import untref.tesis.gio.presentation.activity.DashboardActivity;
@@ -18,7 +20,11 @@ public class DashboardPresenterFactory {
     public static DashboardPresenter build(DashboardActivity dashboardActivity) {
         return new DefaultDashboardPresenter(dashboardActivity, buildFindTermDepositInteractor(),
                 buildFindUserInteractor(), buildForceTermDepositInteractor(), buildGetAllInvestmentInteractor(),
-                buildCreateInvestmentInteractor());
+                buildCreateInvestmentInteractor(), buildForceInvestmentInteractor());
+    }
+
+    private static ForceInvestmentInteractor buildForceInvestmentInteractor() {
+        return DefaultForceInvestmentIntectorFactory.build();
     }
 
     private static CreateInvestmentInteractor buildCreateInvestmentInteractor() {

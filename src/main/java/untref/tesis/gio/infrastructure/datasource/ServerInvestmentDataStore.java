@@ -35,6 +35,11 @@ public class ServerInvestmentDataStore implements InvestmentDataStore {
                 .map(investmentsResponse -> buildInvestmentList(investmentsResponse));
     }
 
+    @Override
+    public Observable<Double> force(Integer ownerId, Integer invesmentId, String authToken) {
+        return investmentApiService.force(ownerId, invesmentId, authToken);
+    }
+
     private List<Investment>  buildInvestmentList(InvestmentsResponse investmentsResponse) {
         return investmentsResponse.getInvestments().stream().map(investmentResponse -> buildInvestment(investmentResponse))
                 .collect(Collectors.toList());

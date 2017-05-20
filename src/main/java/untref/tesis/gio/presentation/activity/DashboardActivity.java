@@ -13,11 +13,13 @@ public interface DashboardActivity {
 
     void force(TermDeposit termDeposit);
 
-    void sucessfulForce(TermDeposit termDeposit);
+    void sucessfulForceTermDeposit(TermDeposit termDeposit);
 
     void activeCasualInvestments(List<Investment> investments);
 
     void updateInvestments(List<Investment> investments);
 
     void force(Investment investment);
+
+    void sucessFulForceInvestment(Double amount);
 }
