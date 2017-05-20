@@ -4,7 +4,7 @@ import untref.tesis.gio.domain.interactor.CreateInvestmentInteractor;
 import untref.tesis.gio.domain.interactor.FindTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.FindUserInteractor;
 import untref.tesis.gio.domain.interactor.ForceTermDepositInteractor;
-import untref.tesis.gio.domain.interactor.GetAllInvestmentInteractor;
+import untref.tesis.gio.domain.interactor.GetInvestmentInteractor;
 import untref.tesis.gio.presentation.activity.DashboardActivity;
 
 public class DefaultDashboardPresenter implements DashboardPresenter {
@@ -13,22 +13,22 @@ public class DefaultDashboardPresenter implements DashboardPresenter {
     private FindTermDepositInteractor findTermDepositInteractor;
     private FindUserInteractor findUserInteractor;
     private ForceTermDepositInteractor forceTermDepositInteractor;
-    private GetAllInvestmentInteractor getAllInvestmentInteractor;
+    private GetInvestmentInteractor getInvestmentInteractor;
     private CreateInvestmentInteractor createInvestmentInteractor;
 
     public DefaultDashboardPresenter(DashboardActivity dashboardActivity, FindTermDepositInteractor findTermDepositInteractor,
                                      FindUserInteractor findUserInteractor, ForceTermDepositInteractor forceTermDepositInteractor,
-                                     GetAllInvestmentInteractor getAllInvestmentInteractor, CreateInvestmentInteractor createInvestmentInteractor) {
+                                     GetInvestmentInteractor getInvestmentInteractor, CreateInvestmentInteractor createInvestmentInteractor) {
         this.dashboardActivity = dashboardActivity;
         this.findTermDepositInteractor = findTermDepositInteractor;
         this.findUserInteractor = findUserInteractor;
         this.forceTermDepositInteractor = forceTermDepositInteractor;
-        this.getAllInvestmentInteractor = getAllInvestmentInteractor;
+        this.getInvestmentInteractor = getInvestmentInteractor;
         this.createInvestmentInteractor = createInvestmentInteractor;
     }
 
     @Override
-    public void findByOwner(Integer ownerId, String authToken) {
+    public void findTermDepositsByOwner(Integer ownerId, String authToken) {
         findTermDepositInteractor.findByOwner(ownerId, authToken).subscribe(termDeposits ->
                 this.dashboardActivity.completeTermDepositList(termDeposits));
     }
@@ -47,13 +47,19 @@ public class DefaultDashboardPresenter implements DashboardPresenter {
 
     @Override
     public void getAllInvestments(Integer ownerId) {
-        getAllInvestmentInteractor.execute(ownerId).subscribe(investments ->
+        getInvestmentInteractor.getAllForGame(ownerId).subscribe(investments ->
             this.dashboardActivity.activeCasualInvestments(investments));
     }
 
     @Override
     public void createInvestment(Integer ownerId, Integer investmentId, String authToken) {
         createInvestmentInteractor.execute(ownerId, investmentId, authToken).subscribe(investments ->
+                this.dashboardActivity.updateInvestments(investments));
+    }
+
+    @Override
+    public void findInvestmentByOwner(Integer ownerId, String authToken) {
+        getInvestmentInteractor.findByOwnerId(ownerId, authToken).subscribe(investments ->
                 this.dashboardActivity.updateInvestments(investments));
     }
 

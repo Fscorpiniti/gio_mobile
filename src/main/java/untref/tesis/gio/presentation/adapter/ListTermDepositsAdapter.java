@@ -1,7 +1,6 @@
 package untref.tesis.gio.presentation.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import java.util.List;
 import untref.tesis.gio.R;
 import untref.tesis.gio.domain.entity.TermDeposit;
 import untref.tesis.gio.presentation.activity.DashboardActivity;
-import untref.tesis.gio.presentation.activity.DefaultDashboardActivity;
 
 public class ListTermDepositsAdapter extends RecyclerView.Adapter<ListTermDepositsAdapter.ViewHolder> {
 
@@ -33,7 +31,7 @@ public class ListTermDepositsAdapter extends RecyclerView.Adapter<ListTermDeposi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_list_term_deposit, parent, false);
+                .inflate(R.layout.item_list, parent, false);
         return new ViewHolder(view);
     }
 
@@ -66,8 +64,8 @@ public class ListTermDepositsAdapter extends RecyclerView.Adapter<ListTermDeposi
 
         public ViewHolder(View view) {
             super(view);
-            amount = (TextView) view.findViewById(R.id.title_term_deposit_list);
-            expiration =  (TextView) view.findViewById(R.id.expiration_term_deposit_list);
+            amount = (TextView) view.findViewById(R.id.title_list);
+            expiration =  (TextView) view.findViewById(R.id.sub_title_list);
             force = (Button) view.findViewById(R.id.btn_force);
         }
     }

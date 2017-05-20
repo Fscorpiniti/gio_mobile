@@ -10,4 +10,6 @@ public interface InvestmentDataStore {
     Observable<List<Investment>> getAll(Integer ownerId);
 
     Observable<List<Investment>> add(Integer ownerId, Integer investmentId, String authToken);
+
+    Observable<List<Investment>> findByOwnerId(Integer ownerId, String authToken);
 }

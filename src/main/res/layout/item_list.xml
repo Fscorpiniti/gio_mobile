@@ -19,7 +19,7 @@
         android:layout_toLeftOf="@+id/btn_force" android:layout_width="fill_parent"
         android:layout_height="fill_parent" android:id="@+id/TextLayout">
 
-        <TextView android:id="@+id/title_term_deposit_list"
+        <TextView android:id="@+id/title_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginTop="1dp"
@@ -27,21 +27,21 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <TextView android:id="@+id/expiration_term_deposit_list"
+        <TextView android:id="@+id/sub_title_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginTop="2dp"
             android:layout_marginLeft="18dp"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_below="@+id/title_term_deposit_list"/>
+            android:layout_below="@+id/title_list"/>
 
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
             android:background="@color/colorPrimary"
             android:layout_marginTop="8dp"
-            android:layout_below="@+id/expiration_term_deposit_list"/>
+            android:layout_below="@+id/sub_title_list"/>
 
     </LinearLayout>
 

@@ -8,9 +8,8 @@ import untref.tesis.gio.domain.interactor.CreateInvestmentInteractor;
 import untref.tesis.gio.domain.interactor.FindTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.FindUserInteractor;
 import untref.tesis.gio.domain.interactor.ForceTermDepositInteractor;
-import untref.tesis.gio.domain.interactor.GetAllInvestmentInteractor;
+import untref.tesis.gio.domain.interactor.GetInvestmentInteractor;
 import untref.tesis.gio.presentation.activity.DashboardActivity;
-import untref.tesis.gio.presentation.activity.DefaultDashboardActivity;
 import untref.tesis.gio.presentation.presenter.DashboardPresenter;
 import untref.tesis.gio.presentation.presenter.DefaultDashboardPresenter;
 
@@ -26,7 +25,7 @@ public class DashboardPresenterFactory {
         return DefaultCreateInvestmentInteractorFactory.build();
     }
 
-    private static GetAllInvestmentInteractor buildGetAllInvestmentInteractor() {
+    private static GetInvestmentInteractor buildGetAllInvestmentInteractor() {
         return DefaultGetAllInvestmentInteractorFactory.build();
     }
 

@@ -18,4 +18,6 @@ public interface DashboardActivity {
     void activeCasualInvestments(List<Investment> investments);
 
     void updateInvestments(List<Investment> investments);
+
+    void force(Investment investment);
 }

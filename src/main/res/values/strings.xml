@@ -19,6 +19,7 @@
     <string name="investment_dialog_title">Evento de inversion</string>
     <string name="investment_ok">Adquirir</string>
     <string name="investment_cancel">Pasar</string>
+    <string name="title_investments_list">Inversiones casuales</string>
 
     <string-array name="duration_term_deposit_entries">
         <item>30</item>

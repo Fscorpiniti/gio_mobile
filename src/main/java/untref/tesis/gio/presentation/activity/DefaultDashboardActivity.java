@@ -26,6 +26,7 @@ import java.util.stream.IntStream;
 import untref.tesis.gio.R;
 import untref.tesis.gio.domain.entity.Investment;
 import untref.tesis.gio.domain.entity.TermDeposit;
+import untref.tesis.gio.presentation.adapter.ListInvestmentAdapter;
 import untref.tesis.gio.presentation.adapter.ListTermDepositsAdapter;
 import untref.tesis.gio.presentation.domain.DashboardPresenterFactory;
 import untref.tesis.gio.presentation.presenter.DashboardPresenter;
@@ -52,10 +53,12 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.dashboard_activity);
-        createListOfTermDeposits(R.id.list_term_depositsg);
+        createRecyclerView(R.id.list_term_deposits);
+        createRecyclerView(R.id.list_investments);
         dashboardPresenter = DashboardPresenterFactory.build(this);
         findUserEconomy();
         findTermDepositsByOwner();
+        findInvestmentsByOwner();
         getAllInvestments();
     }
 
@@ -120,13 +123,20 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     }
 
     @Override
-    public void updateInvestments(List<Investment> investments) {
+    public void updateInvestments(List<Investment> refreshInvestments) {
         getAllInvestments();
+        RecyclerView recyclerView = findRecyclerView(R.id.list_investments);
+        RecyclerView.Adapter adapter = new ListInvestmentAdapter(refreshInvestments, this);
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void force(Investment investment) {
 
     }
 
     private void startTimer() {
-        if (!Optional.of(timer).isPresent()) {
+        if (timer == null) {
             timer = new Timer();
             initializeTimerTask();
             timer.schedule(timerTask, FIRST_THRESHOLD, REPEAT_VALUE);
@@ -196,19 +206,27 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         return (RecyclerView) findViewById(id);
     }
 
+    private void findInvestmentsByOwner() {
+        SharedPreferences sharedPref = getSharedPreferences(USER, Context.MODE_PRIVATE);
+        Integer ownerId = getUserId(sharedPref);
+        String authToken = getAuthToken(sharedPref);
+
+        dashboardPresenter.findInvestmentByOwner(ownerId, authToken);
+    }
+
     private void findTermDepositsByOwner() {
         SharedPreferences sharedPref = getSharedPreferences(USER, Context.MODE_PRIVATE);
         Integer ownerId = getUserId(sharedPref);
         String authToken = getAuthToken(sharedPref);
 
-        dashboardPresenter.findByOwner(ownerId, authToken);
+        dashboardPresenter.findTermDepositsByOwner(ownerId, authToken);
     }
 
     private String getAuthToken(SharedPreferences sharedPref) {
         return sharedPref.getString(AUTH_TOKEN, DEFAULT_TOKEN);
     }
 
-    private void createListOfTermDeposits(Integer id) {
+    private void createRecyclerView(Integer id) {
         RecyclerView recyclerView = findRecyclerView(id);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);

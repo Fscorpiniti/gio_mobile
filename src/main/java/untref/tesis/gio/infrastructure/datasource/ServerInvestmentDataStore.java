@@ -29,6 +29,12 @@ public class ServerInvestmentDataStore implements InvestmentDataStore {
                 .map(investmentsResponse -> buildInvestmentList(investmentsResponse));
     }
 
+    @Override
+    public Observable<List<Investment>> findByOwnerId(Integer ownerId, String authToken) {
+        return investmentApiService.findByOwnerId(ownerId, authToken)
+                .map(investmentsResponse -> buildInvestmentList(investmentsResponse));
+    }
+
     private List<Investment>  buildInvestmentList(InvestmentsResponse investmentsResponse) {
         return investmentsResponse.getInvestments().stream().map(investmentResponse -> buildInvestment(investmentResponse))
                 .collect(Collectors.toList());

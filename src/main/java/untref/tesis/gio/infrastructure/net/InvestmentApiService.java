@@ -18,4 +18,7 @@ public interface InvestmentApiService {
                                         @Path("investment_id")Integer investmentId,
                                         @Header("auth_token") String authToken);
 
+    @GET("users/{owner_id}/investments")
+    Observable<InvestmentsResponse> findByOwnerId(@Path("owner_id") Integer ownerId,
+                                                  @Header("auth_token") String authToken);
 }

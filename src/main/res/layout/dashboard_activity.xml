@@ -31,4 +31,23 @@
         android:layout_below="@id/title_dashboard_list">
     </android.support.v7.widget.RecyclerView>
 
+    <TextView android:id="@+id/title_investments_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:text="@string/title_investments_list"
+        android:layout_below="@id/list_term_deposits"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_investments"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:scrollbars="vertical"
+        android:layout_below="@id/title_investments_list">
+    </android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>
