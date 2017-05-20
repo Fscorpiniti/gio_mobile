@@ -176,10 +176,10 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         String authToken = getAuthToken(sharedPref);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
-        builder.setTitle(getString(R.string.investment_dialog_title));
         builder.setMessage(buildMessageToDialog(selected));
 
         if (selected.getPurchasable()) {
+            builder.setTitle(getString(R.string.investment_dialog_title));
             builder.setPositiveButton(R.string.investment_ok,
                     new DialogInterface.OnClickListener() {
                         @Override
@@ -188,6 +188,8 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
                                     authToken);
                         }
                     });
+        } else {
+            builder.setTitle(getString(R.string.concept_dialog_default_title));
         }
 
         builder.setNegativeButton(R.string.investment_cancel,
