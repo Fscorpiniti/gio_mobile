@@ -60,6 +60,7 @@ public class ServerTermDepositDataStore implements TermDepositDataStore {
                 .withStatus(termDepositResponse.getStatus())
                 .withExpiration(termDepositResponse.getExpiration())
                 .withId(termDepositResponse.getId())
+                .withDuration(termDepositResponse.getDuration())
                 .build();
     }
 

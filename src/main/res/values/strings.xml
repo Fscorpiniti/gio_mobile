@@ -7,10 +7,10 @@
     <string name="edit_name">Nombre</string>
     <string name="create_investments">Crear inversiones</string>
     <string name="create_term_deposit">Crear plazo fijo</string>
-    <string name="amount">Cantidad</string>
+    <string name="amount">Capital</string>
     <string name="button_create_term_deposit">Crear plazo fijo</string>
-    <string name="duration_term_deposit_prompt">Seleccione la duracion</string>
-    <string name="duration">Duracion</string>
+    <string name="duration_term_deposit_prompt">Seleccione el plazo</string>
+    <string name="duration">Plazo</string>
     <string name="rate">Tasa</string>
     <string name="interest">Interes</string>
     <string name="logout">Salir</string>

@@ -54,9 +54,9 @@ public class DefaultCreateTermDepositActivity extends Activity implements Create
     }
 
     @Override
-    public void refreshByChangeRate(Double rate, Integer durationInMonths) {
+    public void refreshByChangeRate(Double rate, Integer duration) {
         refreshComponent(R.id.rate_value_term_deposit_text_view, buildRatePercentage(rate));
-        refreshInterest(rate, durationInMonths);
+        refreshInterest(rate, duration);
     }
 
     @Override
@@ -108,20 +108,20 @@ public class DefaultCreateTermDepositActivity extends Activity implements Create
         return (Spinner) findViewById(R.id.spinner_term_deposit_duration);
     }
 
-    private void refreshInterest(Double rate, Integer durationInMonths) {
+    private void refreshInterest(Double rate, Integer duration) {
         EditText amountEditText = (EditText) findViewById(R.id.amout_term_deposit_edit);
         String amount = amountEditText.getText().toString();
 
         if (StringUtils.isNotBlank(amount)) {
             refreshComponent(R.id.interest_value_term_deposit_text_view,
-                    String.valueOf(calculateInterest(rate, durationInMonths, amount)));
+                    String.valueOf(calculateInterest(rate, duration, amount)));
         } else {
             refreshComponent(R.id.interest_value_term_deposit_text_view, DEFAULT_NUMBER_VALUE);
         }
     }
 
-    private Double calculateInterest(Double rate, Integer durationInMonths, String amount) {
-        return new InterestCalculator().calculate(Double.valueOf(amount), rate, durationInMonths);
+    private Double calculateInterest(Double rate, Integer duration, String amount) {
+        return new InterestCalculator().calculate(Double.valueOf(amount), rate, duration);
     }
 
     private void refreshComponent(int componentId, String text) {

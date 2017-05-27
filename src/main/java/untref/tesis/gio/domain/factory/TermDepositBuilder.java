@@ -15,6 +15,7 @@ public class TermDepositBuilder {
     private TermDepositStatus status;
     private Date expiration;
     private Integer id;
+    private Integer duration;
 
     public TermDepositBuilder withAmount(Double amount) {
         this.amount = amount;
@@ -41,9 +42,14 @@ public class TermDepositBuilder {
         return this;
     }
 
+    public TermDepositBuilder withDuration(Integer duration) {
+        this.duration = duration;
+        return this;
+    }
+
     public TermDeposit build() {
         this.validate();
-        return new TermDeposit(id, amount, rate, status, expiration);
+        return new TermDeposit(id, amount, rate, status, expiration, duration);
     }
 
     private void validate() {
@@ -52,8 +58,10 @@ public class TermDepositBuilder {
         Preconditions.checkNotNull(rate, "Invalid rate");
         Preconditions.checkNotNull(status, "Invalid status");
         Preconditions.checkNotNull(expiration, "Invalid expiration");
+        Preconditions.checkNotNull(duration, "Invalid duration");
         Preconditions.checkArgument(amount >= 0, "Invalid amount");
         Preconditions.checkArgument(rate >= 0, "Invalid rate");
+        Preconditions.checkArgument(duration > 0, "Invalid duration");
     }
 
 }

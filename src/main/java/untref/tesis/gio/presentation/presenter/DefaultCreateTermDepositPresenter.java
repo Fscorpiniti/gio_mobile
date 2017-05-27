@@ -32,7 +32,7 @@ public class DefaultCreateTermDepositPresenter implements CreateTermDepositPrese
     public void findRateForDuration(Integer duration) {
         findRateInteractor.execute().subscribe(termDepositInformation -> createTermDepositActivity
                 .refreshByChangeRate(termDepositInformation.findRateByDuration(duration),
-                        termDepositInformation.findAmountOfMonths(duration)), exception -> handleError(exception));
+                        duration), exception -> handleError(exception));
     }
 
     @Override
