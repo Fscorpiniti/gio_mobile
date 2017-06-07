@@ -40,13 +40,13 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     private static final String AUTH_TOKEN = "auth_token";
     private static final int FIRST_THRESHOLD = 60000;
     private static final int REPEAT_VALUE = 60000;
-    private static final int RANDOM_NUMBER_ORIGIN = 0;
     private DashboardPresenter dashboardPresenter;
     private TimerTask timerTask;
     private List<Investment> investments;
     private Handler handler = new Handler();
     private AlertDialog dialog;
     private Timer timer;
+    private Integer investmentPosition;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -59,6 +59,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         findTermDepositsByOwner();
         findInvestmentsByOwner();
         getAllInvestments();
+        investmentPosition = 0;
     }
 
     @Override
@@ -172,8 +173,7 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
     private void showLocationDialog() {
         if(dialog != null && dialog.isShowing()) return;
 
-        IntStream random = new Random().ints(RANDOM_NUMBER_ORIGIN, investments.size());
-        Investment selected = investments.get(random.findFirst().getAsInt());
+        Investment selected = investments.get(investmentPosition);
         SharedPreferences sharedPref = getSharedPreferences(USER, Context.MODE_PRIVATE);
         Integer ownerId = getUserId(sharedPref);
         String authToken = getAuthToken(sharedPref);
@@ -204,8 +204,17 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
                     }
                 });
 
+        updateInvestmentPosition();
         dialog = builder.create();
         dialog.show();
+    }
+
+    private void updateInvestmentPosition() {
+        this.investmentPosition += 1;
+
+        if (this.investmentPosition >= this.investments.size()) {
+            this.investmentPosition = 0;
+        }
     }
 
     private String buildMessageToDialog(Investment selected) {
