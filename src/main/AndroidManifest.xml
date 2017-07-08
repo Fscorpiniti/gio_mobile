@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".presentation.activity.DefaultLoginActivity">
+        <activity android:name=".presentation.activity.DefaultLoginActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.activity.DefaultCreateUserActivity"/>
-        <activity android:name=".presentation.activity.DefaultDashboardActivity"/>
-        <activity android:name=".presentation.activity.DefaultCreateTermDepositActivity"/>
+        <activity android:name=".presentation.activity.DefaultCreateUserActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.activity.DefaultDashboardActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.activity.DefaultCreateTermDepositActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
