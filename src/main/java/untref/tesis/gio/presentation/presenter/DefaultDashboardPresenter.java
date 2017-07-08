@@ -1,5 +1,8 @@
 package untref.tesis.gio.presentation.presenter;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
+
+import okhttp3.ResponseBody;
 import untref.tesis.gio.domain.interactor.CreateInvestmentInteractor;
 import untref.tesis.gio.domain.interactor.FindTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.FindUserInteractor;
@@ -7,6 +10,7 @@ import untref.tesis.gio.domain.interactor.ForceInvestmentInteractor;
 import untref.tesis.gio.domain.interactor.ForceTermDepositInteractor;
 import untref.tesis.gio.domain.interactor.GetInvestmentInteractor;
 import untref.tesis.gio.presentation.activity.DashboardActivity;
+import untref.tesis.gio.presentation.domain.BodyParser;
 
 public class DefaultDashboardPresenter implements DashboardPresenter {
 
@@ -58,7 +62,8 @@ public class DefaultDashboardPresenter implements DashboardPresenter {
     @Override
     public void createInvestment(Integer ownerId, Integer investmentId, String authToken) {
         createInvestmentInteractor.execute(ownerId, investmentId, authToken).subscribe(investments ->
-                this.dashboardActivity.updateInvestments(investments));
+                this.dashboardActivity.updateInvestments(investments),
+                exception -> handleException(exception));
     }
 
     @Override
@@ -71,6 +76,13 @@ public class DefaultDashboardPresenter implements DashboardPresenter {
     public void forceInvestment(Integer ownerId, Integer invesmentId, String authToken) {
         forceInvestmentInteractor.execute(ownerId, invesmentId, authToken).subscribe(amount ->
                 this.dashboardActivity.sucessFulForceInvestment(amount));
+    }
+
+    private void handleException(Throwable exception) {
+        if (exception instanceof HttpException) {
+            ResponseBody body = ((HttpException) exception).response().errorBody();
+            this.dashboardActivity.notifyError(new BodyParser(body).getMessage());
+        }
     }
 
 }

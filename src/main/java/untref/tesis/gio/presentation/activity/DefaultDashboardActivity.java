@@ -145,6 +145,11 @@ public class DefaultDashboardActivity extends Activity implements DashboardActiv
         Toast.makeText(this, "Acreditacion exitosa por :" + amount, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void notifyError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     private void startTimer() {
         if (timer == null) {
             timer = new Timer();

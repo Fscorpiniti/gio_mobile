@@ -22,4 +22,6 @@ public interface DashboardActivity {
     void force(Investment investment);
 
     void sucessFulForceInvestment(Double amount);
+
+    void notifyError(String message);
 }
