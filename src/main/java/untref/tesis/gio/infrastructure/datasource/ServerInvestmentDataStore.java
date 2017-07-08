@@ -1,7 +1,9 @@
 package untref.tesis.gio.infrastructure.datasource;
 
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 import io.reactivex.Observable;
 import untref.tesis.gio.domain.entity.Investment;
@@ -41,7 +43,7 @@ public class ServerInvestmentDataStore implements InvestmentDataStore {
     }
 
     private List<Investment>  buildInvestmentList(InvestmentsResponse investmentsResponse) {
-        return investmentsResponse.getInvestments().stream().map(investmentResponse -> buildInvestment(investmentResponse))
+        return Stream.of(investmentsResponse.getInvestments()).map(investmentResponse -> buildInvestment(investmentResponse))
                 .collect(Collectors.toList());
     }
 

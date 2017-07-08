@@ -71,8 +71,9 @@ public class TermDepositBuilderTest {
         Double rate = 15.0;
         Integer id = 1;
         Date expiration = new DateTime().plusDays(VALID_DAYS).toDate();
+        Integer duration = new Integer(30);
         new TermDepositBuilder().withAmount(amount).withStatus(status).withRate(rate)
-                .withExpiration(expiration).withId(id).build();
+                .withExpiration(expiration).withId(id).withDuration(duration).build();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -82,8 +83,9 @@ public class TermDepositBuilderTest {
         Double rate = -15.0;
         Integer id = 1;
         Date expiration = new DateTime().plusDays(VALID_DAYS).toDate();
+        Integer duration = new Integer(30);
         new TermDepositBuilder().withAmount(amount).withStatus(status).withRate(rate)
-                .withExpiration(expiration).withId(id).build();
+                .withExpiration(expiration).withId(id).withDuration(duration).build();
     }
 
 }

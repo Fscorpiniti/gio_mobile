@@ -1,8 +1,7 @@
 package untref.tesis.gio.presentation.presenter;
 
+import com.annimon.stream.Optional;
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
-
-import java.util.Optional;
 
 import okhttp3.ResponseBody;
 import untref.tesis.gio.domain.request.CreateTermDepositRequest;

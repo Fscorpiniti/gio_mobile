@@ -17,10 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.stream.IntStream;
 
 import untref.tesis.gio.R;
 import untref.tesis.gio.domain.entity.Investment;

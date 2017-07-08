@@ -5,17 +5,23 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import untref.tesis.gio.presentation.domain.InterestCalculator;
 
 public class InterestCalculatorTest {
 
-    public static final int ONE_MONTH = 1;
-    public static final int TWO_MONTHS = 2;
-    public static final int THREE_MONTHS = 3;
-    public static final int SIX_MONTHS = 6;
-    public static final int TWELVE_MONTHS = 12;
+    public static final int ONE_MONTH = 30;
+    public static final int TWO_MONTHS = 60;
+    public static final int THREE_MONTHS = 90;
+    public static final int SIX_MONTHS = 180;
+    public static final int TWELVE_MONTHS = 365;
+    public static final Double AMOUNT = new Double(100);
+    public static final Double RATE = new Double(10);
     private InterestCalculator calculator;
     private Double interestResult;
+    private static final int SCALE = 2;
 
     @Test
     public void whenCalculateInterestForOneMonthThenResultIsValid() {
@@ -23,7 +29,7 @@ public class InterestCalculatorTest {
 
         whenCalculateInterestFor(ONE_MONTH);
 
-        Double expectedInterest = new Double(10);
+        Double expectedInterest = new Double((AMOUNT * RATE * ONE_MONTH) / 36500);
         thenResultIs(expectedInterest);
     }
 
@@ -33,7 +39,7 @@ public class InterestCalculatorTest {
 
         whenCalculateInterestFor(TWO_MONTHS);
 
-        Double expectedInterest = new Double(20);
+        Double expectedInterest = new Double((AMOUNT * RATE * TWO_MONTHS) / 36500);
         thenResultIs(expectedInterest);
     }
 
@@ -43,7 +49,7 @@ public class InterestCalculatorTest {
 
         whenCalculateInterestFor(THREE_MONTHS);
 
-        Double expectedInterest = new Double(30);
+        Double expectedInterest = new Double((AMOUNT * RATE * THREE_MONTHS) / 36500);
         thenResultIs(expectedInterest);
     }
 
@@ -53,7 +59,7 @@ public class InterestCalculatorTest {
 
         whenCalculateInterestFor(SIX_MONTHS);
 
-        Double expectedInterest = new Double(60);
+        Double expectedInterest = new Double((AMOUNT * RATE * SIX_MONTHS) / 36500);
         thenResultIs(expectedInterest);
     }
 
@@ -63,18 +69,17 @@ public class InterestCalculatorTest {
 
         whenCalculateInterestFor(TWELVE_MONTHS);
 
-        Double expectedInterest = new Double(120);
+        Double expectedInterest = new Double((AMOUNT * RATE * TWELVE_MONTHS) / 36500);
         thenResultIs(expectedInterest);
     }
 
     private void thenResultIs(Double expectedInterest) {
-        Assert.assertEquals(expectedInterest, interestResult);
+        Double scaleExpected = new BigDecimal(expectedInterest).setScale(SCALE, RoundingMode.HALF_UP).doubleValue();
+        Assert.assertEquals(scaleExpected, interestResult);
     }
 
     private void whenCalculateInterestFor(int durationInMonths) {
-        Double amount = new Double(100);
-        Double rate = new Double(10);
-        interestResult = calculator.calculate(amount, rate, durationInMonths);
+        interestResult = calculator.calculate(AMOUNT, RATE, durationInMonths);
     }
 
     private void givenNewCalculator() {

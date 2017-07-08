@@ -1,8 +1,10 @@
 package untref.tesis.gio.infrastructure.datasource;
 
 
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 import io.reactivex.Observable;
 import untref.tesis.gio.domain.entity.TermDeposit;
@@ -48,7 +50,7 @@ public class ServerTermDepositDataStore implements TermDepositDataStore {
     }
 
     private List<TermDeposit> buildTermDepositList(TermDepositResponses termDepositResponses) {
-        return termDepositResponses.getTermDepositResponses().stream()
+        return Stream.of(termDepositResponses.getTermDepositResponses())
                 .map(termDepositResponse -> buildTermDeposit(termDepositResponse))
                 .collect(Collectors.toList());
     }
